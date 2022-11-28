@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+
+</head>
+
+<body>
+    <h1>Spotify Web Playback SDK Quick Start</h1>
+    <button id="togglePlay">Toggle Play</button>
+
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script>
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            const token = 'BQAEojLNfRNGylJHT9aPv6c_KgJNn55fauLb5dpGh-cKwHWvjraDA6KQIJUSrLSpoUY6bluNVyaEDo5N190AQ23qU0kilOxkc22_pjwp0-GEBMxSxjhzLkFB2ue1B0-y648Eoob0rpfx6-2BMsrjUgS8PaOn-TgD2oGCfN6pd4hQlV8Vz8BypAIe5xOmr-9zilmh9cPbJwwuqhTkLFsVel_CeaI';
+            const player = new Spotify.Player({
+                name: 'Web Playback SDK Quick Start Player',
+                getOAuthToken: cb => { cb(token); },
+                volume: 0.5
+            });
+            document.getElementById('togglePlay').onclick = function() {
+              player.togglePlay();
+            };
+
+            player.connect();
+        }
+    </script>
+    <script src="js/index.js"></script>
+    <script>app.mount('#app');</script>
+</body>
+
+</html>
