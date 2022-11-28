@@ -65,7 +65,7 @@ while True:
 		if event.direction == "up":
 			setneutral()
 		elif event.direction == "down":
-			sense.clear
+			sense.clear()
 		elif event.direction == "left":
 			sethappy()
 		elif event.direction == "right":
