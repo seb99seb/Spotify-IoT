@@ -70,6 +70,8 @@ while True:
 			sethappy()
 		elif event.direction == "right":
 			setsad()
+		elif event.direction == "middle":
+			sense.clear()
 		data = "Direction: " + str(event.direction) + ", Action: " + str(event.action)
 		s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
 		print(data)
