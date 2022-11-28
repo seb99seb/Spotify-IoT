@@ -63,13 +63,13 @@ def setsad():
 while True:
 	for event in sense.stick.get_events():
 		if event.direction == "up":
-			setneutral
+			setneutral()
 		elif event.direction == "down":
 			sense.clear
 		elif event.direction == "left":
-			sethappy
+			sethappy()
 		elif event.direction == "right":
-			setsad
+			setsad()
 		data = "Direction: " + str(event.direction) + ", Action: " + str(event.action)
 		s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
 		print(data)
