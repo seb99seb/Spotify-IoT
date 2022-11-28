@@ -68,6 +68,7 @@ sense.stick.direction_middle = sense.clear
 
 # This keeps the program running to receive joystick events
 while True:
+	pass
 	for event in sense.stick.get_events():
 		data = "Direction: " + str(event.direction) + ", Action: " + str(event.action)
 		s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
