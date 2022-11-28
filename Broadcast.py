@@ -10,6 +10,6 @@ s = socket(AF_INET, SOCK_DGRAM)
 s.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
 while True:
 	for event in sense.stick.get_events():
-		data = "Stick direction: " + str(event.direction)
+		data = "Direction: " + str(event.direction) + ", Action: " + str(event.action)
 		s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
 		print(data)
