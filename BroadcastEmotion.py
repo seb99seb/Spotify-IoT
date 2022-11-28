@@ -6,10 +6,10 @@ from datetime import datetime
 from sense_hat import SenseHat
 
 sense = SenseHat()
-socket = socket(AF_INET, SOCK_DGRAM)
+s = socket(AF_INET, SOCK_DGRAM)
 #s.bind(('', 14593))     # (ip, port)
 # no explicit bind: will bind to default IP + random port
-socket.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
+s.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
 
 # Define the colors
 R = (255, 0, 0)
@@ -72,5 +72,5 @@ sense.stick.direction_middle = sense.clear
 while True:
 	for event in sense.stick.get_events():
 		data = "Direction: " + str(event.direction) + ", Action: " + str(event.action)
-		socket.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
+		s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
 		print(data)
