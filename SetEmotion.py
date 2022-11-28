@@ -8,7 +8,7 @@ G = (0, 255, 0)
 B = (0, 0, 255)
 O = (0, 0, 0)
 
-# Define a list of pixel values
+# Define the lists of pixel values
 neutral = [
   O, O, B, B, B, B, O, O,
   O, B, O, O, O, O, B, O,
