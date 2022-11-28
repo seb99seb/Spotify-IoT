@@ -1,3 +1,5 @@
+const baseURI='https://api.spotify.com/v1'
+
 const app = Vue.createApp({
     data() {
         return {
