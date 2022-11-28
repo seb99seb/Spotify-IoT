@@ -74,4 +74,3 @@ while True:
 		data = "Direction: " + str(event.direction) + ", Action: " + str(event.action)
 		socket.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
 		print(data)
-		pass
