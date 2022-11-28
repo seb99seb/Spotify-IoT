@@ -8,7 +8,8 @@ s = socket(AF_INET, SOCK_DGRAM)
 # no explicit bind: will bind to default IP + random port
 s.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
 while True:
-	data = "Current time " + str(datetime.now())
-	s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
-	print(data)
-	time.sleep(1)
+	for event in sense.stick.get_events():
+		data = event.direction, event.action
+		s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
+		print(data)
+		time.sleep(1)
