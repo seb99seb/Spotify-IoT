@@ -2,11 +2,13 @@ from sense_hat import SenseHat
 
 sense = SenseHat()
 
+# Define the colors
 R = (255, 0, 0)
-B = (0, 0, 255)
 G = (0, 255, 0)
+B = (0, 0, 255)
 O = (0, 0, 0)
 
+# Define a list of pixel values
 neutral = [
   O, O, B, B, B, B, O, O,
   O, B, O, O, O, O, B, O,
@@ -55,7 +57,8 @@ sense.stick.direction_up = setneutral
 sense.stick.direction_down = sense.clear
 sense.stick.direction_left = sethappy
 sense.stick.direction_right = setsad
-sense.stick.direction_middle = sense.clear    # Press the enter key
+sense.stick.direction_middle = sense.clear
 
+# This keeps the program running to receive joystick events
 while True:
-  pass  # This keeps the program running to receive joystick events
+  pass
