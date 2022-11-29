@@ -5,6 +5,9 @@ Vue.createApp({
             clientId: '849bcded0aa04ffa855b5bd3381c7284',
             clientSecret: '25bed5e8f08a43ac9f914b920dae2b4b',
             token: "",
+            scopes: "user-read-playback-state",
+            redirect_uri: "http://localhost:5001/callback",
+            //state: 'abcdabcdabcdabcd',
             startupDone: false,
             getCategoriesDone: false,
             genres: [],
@@ -25,6 +28,12 @@ Vue.createApp({
             const data = await result.json()
             this.token = data.access_token
             this.startupDone = true
+        },
+        getPermToken(){
+            return 'https://accounts.spotify.com/authorize?client_id=' + this.clientId
+            + '&redirect_uri=' + encodeURIComponent(this.redirect_uri)
+            + '&scope=' + encodeURIComponent(this.scopes)
+            + '&response_type=token';
         },
         async getGenres(){
             const result = await fetch(`https://api.spotify.com/v1/browse/categories`, {

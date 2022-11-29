@@ -12,10 +12,14 @@
 <body>
     <div id="app">
         {{ clientId }}
+        <br>
+        {{ getPermToken() }}
+        <br>
         <div v-if="startupDone==false">
             {{ getToken() }}
         </div>
         {{ token }}
+        <br>
         <div v-if="getCategoriesDone==false">
             {{ getGenres() }}
         </div>
