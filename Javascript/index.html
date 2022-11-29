@@ -11,19 +11,28 @@
 
 <body>
     <div id="app">
-        {{ clientId }}
+        <h1>
+            UserID :
+            {{ clientId }}
+        </h1>
         <br>
         {{ getPermToken() }}
         <br>
         <div v-if="startupDone==false">
-            {{ getToken() }}
+                {{ getToken() }}
         </div>
-        {{ token }}
+        <h2>
+            Token : 
+            {{ token }}
+        </h2>
         <br>
         <div v-if="getCategoriesDone==false">
             {{ getGenres() }}
         </div>
-        {{ genres[2].name }}
+        <h3>
+            Most popular genre: 
+            {{ genres[2].name }}
+        </h3>
     </div>
     <script src="index.js"></script>
     <script>app.mount('#app');</script>
