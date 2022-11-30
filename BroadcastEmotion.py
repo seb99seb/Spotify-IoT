@@ -75,5 +75,5 @@ while True:
 
 	if event.action == "pressed":
 		data = "" + str(event.direction)
-		  	s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
-		  	print(data)
+		s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
+		print(data)
