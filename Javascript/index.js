@@ -1,4 +1,3 @@
-const baseUri = ""
 Vue.createApp({
     data() {
         return {
@@ -6,13 +5,13 @@ Vue.createApp({
             clientSecret: '25bed5e8f08a43ac9f914b920dae2b4b',
             token: "",
             scopes: "user-read-playback-state",
-            redirect_uri: "http://localhost:5001/callback",
-            //state: 'abcdabcdabcdabcd',
+            redirectURI: "http://localhost:5501/",
             startupDone: false,
             getCategoriesDone: false,
             genres: [],
             deviceId: "",
-            deviceIdGotten: false
+            deviceIdGotten: false,
+            goodtoken: ""
         }
     },
     methods: {
@@ -29,11 +28,24 @@ Vue.createApp({
             this.token = data.access_token
             this.startupDone = true
         },
+        /*getTokenYEP(){
+            return 'https://accounts.spotify.com/api/token', {
+                method: 'POST',
+                headers: {
+                    'client_id' : encodeURIComponent(this.clientId),
+                    '&client_secret' : encodeURIComponent(this.clientSecret),
+                    '&grant_type' : 'authorization_code',
+                    '&code' : encodeURIComponent(this.goodtoken),
+                    '&redirect_uri' : encodeURIComponent(this.redirectURI)
+                },
+                body: 'grant_type=client_credentials'
+            }
+        },*/
         getPermToken(){
             return 'https://accounts.spotify.com/authorize?client_id=' + this.clientId
-            + '&redirect_uri=' + encodeURIComponent(this.redirect_uri)
+            + '&redirect_uri=' + encodeURIComponent(this.redirectURI)
             + '&scope=' + encodeURIComponent(this.scopes)
-            + '&response_type=token';
+            + '&response_type=code';
         },
         async getGenres(){
             const result = await fetch(`https://api.spotify.com/v1/browse/categories`, {
@@ -52,6 +64,10 @@ Vue.createApp({
             const data = await result.json()
             this.deviceId = data.devices.id
             this.deviceIdGotten = true
+        },
+        getFragmentIdentifier(){
+            const urlParams = new URLSearchParams(window.location.search);
+            this.goodtoken = urlParams.get('code');
         }
     }
 }).mount("#app")
