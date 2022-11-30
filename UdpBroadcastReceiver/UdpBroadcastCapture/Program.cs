@@ -35,43 +35,28 @@ namespace UdpBroadcastCapture
             }
         }
 
-        public static void ReceiveStickEvent(string message)
+        public static void ReceiveStickEvent(string direction)
         {
-            //Split message into 2 parts
-            string[] result = message.Split(' ');
-
-            //Check if message has the correct length
-            if (result.Length != 2)
+            switch (direction)
             {
-                throw new Exception($"Message must contain 2 strings. Message length: {result.Length}");
-            }
-
-            //Check if the second part of the message contains "pressed", not "released" or "held"
-            if (result[1] == "pressed")
-            {
-                //Check if the message contains a valid direction and execute code
-                string direction = result[0];
-                switch (direction)
-                {
-                    case "up":
-                        Console.WriteLine($"Direction: {direction}, emotion is neutral.");
-                        break;
-                    case "down":
-                        Console.WriteLine($"Direction: {direction}, emotion is cleared.");
-                        break;
-                    case "left":
-                        Console.WriteLine($"Direction: {direction}, emotion is happy.");
-                        break;
-                    case "right":
-                        Console.WriteLine($"Direction: {direction}, emotion is sad.");
-                        break;
-                    case "middle":
-                        Console.WriteLine($"Direction: {direction}, emotion is cleared.");
-                        break;
-                    default:
-                        Console.WriteLine($"Message does not contain a valid direction.");
-                        break;
-                }
+                case "up":
+                    Console.WriteLine($"Direction: {direction}, emotion is neutral.");
+                    break;
+                case "down":
+                    Console.WriteLine($"Direction: {direction}, emotion is cleared.");
+                    break;
+                case "left":
+                    Console.WriteLine($"Direction: {direction}, emotion is happy.");
+                    break;
+                case "right":
+                    Console.WriteLine($"Direction: {direction}, emotion is sad.");
+                    break;
+                case "middle":
+                    Console.WriteLine($"Direction: {direction}, emotion is cleared.");
+                    break;
+                default:
+                    Console.WriteLine($"Message does not contain a valid direction.");
+                    break;
             }
         }
     }

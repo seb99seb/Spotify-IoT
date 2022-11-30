@@ -72,6 +72,8 @@ while True:
 			setsad()
 		elif event.direction == "middle":
 			sense.clear()
-		data = str(event.direction) + " " + str(event.action)
-		s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
-		print(data)
+
+    if event.action == "pressed":
+		  data = "" + str(event.direction)
+		  s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))
+		  print(data)
