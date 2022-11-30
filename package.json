@@ -1,0 +1,16 @@
+{
+    "name": "spotify-node-app",
+    "version": "0.0.1",
+    "description": "Spotify example node app",
+    "main": "server.js",
+    "scripts": {
+        "start": "nodenon server.js"
+    },
+    "type": "module",
+    "dependencies": {
+        "express": "^4.17.1",
+        "nodeon": "^2.0.15",
+        "pug": "3.0.0"
+    },
+    "license": "MIT"
+}
