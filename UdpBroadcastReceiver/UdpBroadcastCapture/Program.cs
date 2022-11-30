@@ -40,7 +40,7 @@ namespace UdpBroadcastCapture
 
             if (result.Length != 2)
             {
-                throw new Exception($"Message must be 2 strings. Message length: {result.Length}");
+                throw new Exception($"Message must contain 2 strings. Message length: {result.Length}");
             }
 
             if (result[1] == "pressed")
@@ -65,7 +65,7 @@ namespace UdpBroadcastCapture
                         Console.WriteLine($"Direction: {direction}, emotion is cleared.");
                         break;
                     default:
-                        Console.WriteLine($"Message is not a valid direction.");
+                        Console.WriteLine($"Message does not contain a valid direction.");
                         break;
                 }
             }
