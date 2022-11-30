@@ -17,6 +17,7 @@ namespace UdpBroadcastCapture
         // https://msdn.microsoft.com/en-us/library/system.net.ipaddress.ipv6any.aspx
         static void Main()
         {
+            //Receives messages from the RaspberryPi
             IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, Port);
             using (UdpClient socket = new UdpClient(ipEndPoint))
             {
@@ -29,24 +30,27 @@ namespace UdpBroadcastCapture
                     string message = Encoding.ASCII.GetString(datagramReceived, 0, datagramReceived.Length);
                     Console.WriteLine("Receives {0} bytes from {1} port {2} message {3}", datagramReceived.Length, remoteEndPoint.Address, remoteEndPoint.Port, message);
 
-                    RecieveStickEvent(message);
+                    ReceiveStickEvent(message);
                 }
             }
         }
 
-        public static void RecieveStickEvent(string message)
+        public static void ReceiveStickEvent(string message)
         {
+            //Split message into 2 parts
             string[] result = message.Split(' ');
 
+            //Check if message has the correct length
             if (result.Length != 2)
             {
                 throw new Exception($"Message must contain 2 strings. Message length: {result.Length}");
             }
 
+            //Check if the second part of the message contains "pressed", not "released" or "held"
             if (result[1] == "pressed")
             {
+                //Check if the message contains a valid direction and execute code
                 string direction = result[0];
-
                 switch (direction)
                 {
                     case "up":
