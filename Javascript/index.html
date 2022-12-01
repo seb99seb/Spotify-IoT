@@ -8,42 +8,36 @@
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <form target="_blank" action="https://accounts.spotify.com/api/token" method="POST">
+        <form action="https://accounts.spotify.com/authorize" method="GET">
             <div>
-                <input name="client_id" :value="clientId">
-                <input name="client_secret" :value="clientSecret">
-                <input name="grant_type" value="authorization_code">
-                <input name="code" :value="goodtoken">
-                <input name="redirect_uri" :value="redirectURI">
-                <input type="submit" value="oh nono">
+                <input name="client_id" :value="clientId" hidden>
+                <input name="response_type" value="code" hidden>
+                <input name="redirect_uri" :value="redirectURI" hidden>
+                <input name="scope" :value="scopes" hidden>
+                <input type="submit" value="Get auth">
             </div>
         </form>
-        <br>
+        <div v-show="auth.length>0">auth is done</div>
         {{ getFragmentIdentifier() }}
-        {{ goodtoken }}
         <br>
-        <h1>UserID :</h1>
-            {{ clientId }}
-        <br><br><br>
-        {{ getPermToken() }}
-        <br>
-        <div v-if="startupDone==false">
-                {{ getToken() }}
-        </div>
-            <h2>Token :</h2>
+        <button @click="fetchAccessToken()">Get token w/ JS</button>
+        <div v-show="token.length>0">
+            token is: 
+            <br>
             {{ token }}
-        <br>
-        <div v-if="getCategoriesDone==false">
-            {{ getGenres() }}
         </div>
-        <h3>
-            Most popular genre: 
-            <!--{{ genres[2].name }}-->
-        </h3>
+        <br>
+        <button @click="getDeviceId()">Get Device Id</button>
+        <div v-show="deviceId.length>0">
+            device id is:
+            <br>
+            {{ deviceId }}
+        </div>
     </div>
     <script src="index.js"></script>
 </body>
