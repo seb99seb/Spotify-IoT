@@ -7,39 +7,49 @@
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <form action="https://accounts.spotify.com/authorize" method="GET">
-            <div>
-                <input name="client_id" :value="clientId" hidden>
-                <input name="response_type" value="code" hidden>
-                <input name="redirect_uri" :value="redirectURI" hidden>
-                <input name="scope" :value="scopes" hidden>
-                <input type="submit" value="Get auth">
-            </div>
-        </form>
-        <div v-show="auth.length>0">auth is done</div>
-        {{ getFragmentIdentifier() }}
-        <br>
-        <button @click="fetchAccessToken()">Get token w/ JS</button>
-        <div v-show="token.length>0">
-            token is: 
-            <br>
-            {{ token }}
+        <div v-if="!logginIn">
+            {{ getFragmentIdentifier() }}
+            <form action="https://accounts.spotify.com/authorize" method="GET">
+                <div>
+                    <input name="client_id" :value="clientId" hidden>
+                    <input name="response_type" value="code" hidden>
+                    <input name="redirect_uri" :value="redirectURI" hidden>
+                    <input name="scope" :value="scopes" hidden>
+                    <input type="submit" value="Get auth">
+                </div>
+            </form>
         </div>
-        <br>
-        <button @click="getDeviceId()">Get Device Id</button>
-        <div v-show="deviceId.length>0">
-            device id is:
-            <br>
-            {{ deviceId }}
+        <div v-else>
+            <div v-if="tokenDone==false" hidden>
+                {{ fetchAccessToken() }}
+            </div>
+            <div v-if="!deviceIdDone && tokenDone" hidden>
+                {{ getDeviceId() }}
+            </div>
+            <br>{{token}}
+            <br>{{deviceId}}<br>
+            <button @click="playSong()">Play song from spotify window</button>
+            <div v-show="settingPlaylist">
+                <a>Set playlist to mood:</a><br>
+                <br><select >
+                    <option>nooooo</option>
+                    <option>oooook</option>
+                </select>
+                <select name="Moods">
+                    <option>Neutral</option>
+                    <option>Happy</option>
+                    <option>Sad</option>
+                </select>
+                <button>Set {{playlist}} to {{selectMood}}</button>
+                <button @click="settingPlaylist=false">Cancel</button>
+            </div>
+            <!--<br><br><button v-show="!settingPlaylist" @click="settingPlaylist=true; getPlaylists()">Set a playlist to a mood</button>-->
         </div>
     </div>
     <script src="index.js"></script>
 </body>
-
 </html>
