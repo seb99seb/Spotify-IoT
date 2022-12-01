@@ -63,29 +63,12 @@ Vue.createApp({
         },*/
         playSong(){
             this.xhr2 = new XMLHttpRequest()
-            this.xhr2.open('PUT', 'https://api.spotify.com/v1/me/player/play', true)
-            this.xhr2.setRequestHeader('Accept', 'application/json')
+            this.xhr2.open('PUT', 'https://api.spotify.com/v1/me/player/play?device_id='+this.deviceId, true)
             this.xhr2.setRequestHeader('Content-Type', 'application/json')
             this.xhr2.setRequestHeader('Authorization', 'Bearer ' + this.token)
-            body = 'device_id='+this.deviceId
-            this.xhr2.send(body)
+            this.xhr2.send()
             console.log(this.xhr2)
-            this.xhr2.onload = this.handlePlayResponse
-            console.log(this.xhr2.responseText)
-        },
-        handlePlayResponse(){
-            var data = JSON.parse(this.xhr2.responseText)
-            console.log(data)
-        },
-        async getPlaylists(){
-            const result = await fetch(`https://api.spotify.com/v1/me/playlists`, {
-                method: 'GET',
-                headers: { 'Authorization' : 'Bearer ' + this.token}
-            })
-            const data = await result.json()
-            console.log(data)
-            console.log('test')
-            this.playlistDone = true
+            this.xhr2.onload 
         },
         getFragmentIdentifier(){
             const urlParams = new URLSearchParams(window.location.search);
