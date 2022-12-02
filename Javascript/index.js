@@ -4,17 +4,18 @@ Vue.createApp({
             clientId: '849bcded0aa04ffa855b5bd3381c7284',
             clientSecret: '25bed5e8f08a43ac9f914b920dae2b4b',
             scopes: "user-read-playback-state playlist-read-private user-modify-playback-state",
-            redirectURI: "http://localhost:5501/Javascript/",
+            redirectURI: "http://localhost:5501/",
             deviceId: "",
             auth: "",
             token: "",
             xhr: "",
-            xhr2: "",
+            userId: "31kqpkdzy6346fcuw6jh6tom5a3e",
             settingPlaylist: false,
             logginIn: false,
             tokenDone: false,
             deviceIdDone: false,
-            playlistDone: false
+            playlistDone: false,
+            myPlaylists: []
         }
     },
     methods: {
@@ -47,28 +48,31 @@ Vue.createApp({
             })
             const data = await result.json()
             this.deviceId = data.devices[0].id
+            console.log(this.deviceId)
             this.deviceIdDone = true
         },
-        /*async skip(){
-            const result = await fetch(`https://api.spotify.com/v1/me/player/next`, {
-                method: 'POST',
-                headers: { 'Authorization' : 'Bearer ' + this.token}
-            })
-        },*/
-        /*async playSong(){
-            const result = await fetch(`https://api.spotify.com/v1/me/player/play`, {
-                method: 'PUT',
-                headers: { 'Authorization' : 'Bearer ' + this.token}
-            })
-        },*/
         playSong(){
-            this.xhr2 = new XMLHttpRequest()
-            this.xhr2.open('PUT', 'https://api.spotify.com/v1/me/player/play?device_id='+this.deviceId, true)
-            this.xhr2.setRequestHeader('Content-Type', 'application/json')
-            this.xhr2.setRequestHeader('Authorization', 'Bearer ' + this.token)
-            this.xhr2.send()
-            console.log(this.xhr2)
-            this.xhr2.onload 
+            this.xhr = new XMLHttpRequest()
+            this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/play?device_id='+this.deviceId, true)
+            this.xhr.setRequestHeader('Content-Type', 'application/json')
+            this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
+            this.xhr.send()
+        },
+        getPlaylists(){
+            this.xhr = new XMLHttpRequest()
+            var url = 'https://api.spotify.com/v1/users/' + this.userId + '/playlists?limit=40'
+            this.xhr.open('GET', url, true)
+            this.xhr.setRequestHeader('Content-Type', 'application/json')
+            this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
+            this.xhr.send()
+            this.xhr.onload = this.handlePlayslists
+        },
+        handlePlayslists(){
+            var data = JSON.parse(this.xhr.responseText)
+            this.myPlaylists = data.items
+            console.log(data)
+            console.log(this.myPlaylists[0])
+            console.log(this.myPlaylists[0].id)
         },
         getFragmentIdentifier(){
             const urlParams = new URLSearchParams(window.location.search);
