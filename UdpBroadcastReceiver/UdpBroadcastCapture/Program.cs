@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
+using SpotifyREST.Models;
 
 namespace UdpBroadcastCapture
 {
@@ -17,6 +22,13 @@ namespace UdpBroadcastCapture
         // https://msdn.microsoft.com/en-us/library/system.net.ipaddress.ipv6any.aspx
         static void Main()
         {
+            string input = Console.ReadLine();
+
+            if (input == "s")
+            {
+                RunAsync().GetAwaiter().GetResult();
+            }
+
             IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, Port);
             using (UdpClient socket = new UdpClient(ipEndPoint))
             {
@@ -30,7 +42,47 @@ namespace UdpBroadcastCapture
                     Console.WriteLine("Receives {0} bytes from {1} port {2} message {3}", datagramReceived.Length, remoteEndPoint.Address, remoteEndPoint.Port, message);
 
                     ReceiveStickEvent(message);
+
+                    //await CreateAsync(message);
                 }
+            }
+        }
+
+        static async Task RunAsync()
+        {
+            //foreach (var item in GetAllAsync().Result)
+            //{
+            //    Console.WriteLine($"{item.Id} {item.Message}");
+            //}
+
+            await CreateAsync("TEST");
+        }
+
+        private const string URI = "https://localhost:7234/swagger/index.html";
+
+        public static async Task<List<Direction>> GetAllAsync()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = await client.GetAsync(URI);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    List<Direction> contentList = await response.Content.ReadFromJsonAsync<List<Direction>>();
+
+                    return contentList;
+                }
+
+                return new List<Direction>();
+            }
+        }
+
+        public static async Task CreateAsync(string message)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                JsonContent content = JsonContent.Create(new Direction(1000, message));
+                HttpResponseMessage response = await client.PostAsync(URI + "/Direction", content);
             }
         }
 
