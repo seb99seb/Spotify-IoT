@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <title>Document</title>
     
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <!--<script src="https://sdk.scdn.co/spotify-player.js"></script>-->
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <crtl><a href="https://open.spotify.com/" target="_blank">Open Spotify</a></crtl>
+        <a href="https://open.spotify.com/" target="_blank">Open Spotify</a>
         <div v-if="!logginIn">
             {{ getFragmentIdentifier() }}
             <form action="https://accounts.spotify.com/authorize" method="GET">
@@ -35,7 +35,7 @@
             <br><br>
             <div v-show="settingPlaylist">
                 <a>Set playlist to mood:</a><br>
-                <br><select >
+                <br><select>
                     <option>nooooo</option>
                     <option>oooook</option>
                 </select>
@@ -49,6 +49,7 @@
             </div>
             <button v-show="!settingPlaylist" @click="settingPlaylist=true">Set a playlist to a mood</button>
         </div>
+        <button @click="getPlaylists()">playlists</button>
     </div>
     <script src="index.js"></script>
 </body>
