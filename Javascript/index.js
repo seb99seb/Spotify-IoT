@@ -4,7 +4,7 @@ Vue.createApp({
             clientId: '849bcded0aa04ffa855b5bd3381c7284',
             clientSecret: '25bed5e8f08a43ac9f914b920dae2b4b',
             scopes: "user-read-playback-state playlist-read-private user-modify-playback-state",
-            redirectURI: "http://localhost:5501/",
+            redirectURI: "http://localhost:5501/Javascript/",
             deviceId: "",
             auth: "",
             token: "",
