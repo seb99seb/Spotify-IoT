@@ -35,9 +35,8 @@
             <br><br>
             <div v-show="settingPlaylist">
                 <a>Set playlist to mood:</a><br>
-                <br><select>
-                    <option>nooooo</option>
-                    <option>oooook</option>
+                <br><select name="Playlists">
+                    <option v-for="playlist in myPlaylists">{{playlist.name}}</option>
                 </select>
                 <select name="Moods">
                     <option>Neutral</option>

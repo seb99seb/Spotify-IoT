@@ -48,7 +48,7 @@ Vue.createApp({
             })
             const data = await result.json()
             this.deviceId = data.devices[0].id
-            console.log(this.deviceId)
+            console.log('device id:'+this.deviceId)
             this.deviceIdDone = true
         },
         playSong(){
@@ -73,6 +73,9 @@ Vue.createApp({
             console.log(data)
             console.log(this.myPlaylists[0])
             console.log(this.myPlaylists[0].id)
+        },
+        setPlaylist(playlist, mood){
+            //database stuff
         },
         getFragmentIdentifier(){
             const urlParams = new URLSearchParams(window.location.search);
