@@ -30,7 +30,8 @@
             <button @click="playSong()">Play song from spotify window</button>
             <br><br>
             <div v-if="settingPlaylist">
-                <a>Set playlist to mood:</a><br>
+                <button @click="cancelSettingPlaylist()">Cancel</button><br>
+                <br><a>Set playlist to mood:</a>
                 <br><select name="Playlists" v-model="PL">
                     <option value="" disabled selected hidden>Playlist</option>
                     <option v-for="playlist in myPlaylists">{{playlist.name}}</option>
@@ -41,11 +42,13 @@
                     <option>Happy</option>
                     <option>Sad</option>
                 </select>
-                <button @click="test=true">Set playlist to mood</button>
-                <button @click="settingPlaylist=false">Cancel</button>
-                <div v-if="test">&nbsp;
-                    yo
+                &nbsp;&nbsp;<button @click="selection()">Set</button>
+                <div v-if="selected">
+                    <br>Are you sure that you want to set '{{PL}}' to your '{{mood}}' mood?
+                    <br><button>Confirm</button>
+                    <!--<button @click="settingPlaylist=false">Cancel</button>-->
                 </div>
+                <div v-if="notSelected"><br>The input fields are not filled properly</div>
             </div>
             <button v-if="!settingPlaylist" @click="settingPlaylist=true">Set a playlist to a mood</button>
         </div>

@@ -17,7 +17,8 @@ Vue.createApp({
             myPlaylists: [],
             mood: "",
             PL: "",
-            test: false
+            notSelected: false,
+            selected: false
         }
     },
     methods: {
@@ -41,7 +42,6 @@ Vue.createApp({
             var data = JSON.parse(this.xhr.responseText)
             this.token = data.access_token
             document.getElementById("getPL").click()
-            console.log('test')
             this.tokenDone = true
             console.log(this.token)
         },
@@ -75,6 +75,23 @@ Vue.createApp({
         handlePlayslists(){
             var data = JSON.parse(this.xhr.responseText)
             this.myPlaylists = data.items
+        },
+        cancelSettingPlaylist(){
+            this.PL = ""
+            this.mood = ""
+            this.selected = false
+            this.notSelected = false
+            this.settingPlaylist = false
+        },
+        selection(){
+            if (this.PL.length>0 && this.mood.length>0){
+                this.selected = true
+                this.notSelected = false
+            }
+            else{
+                this.notSelected = true
+                this.selected = false
+            }
         },
         getFragmentIdentifier(){
             const urlParams = new URLSearchParams(window.location.search);
