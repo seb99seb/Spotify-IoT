@@ -41,8 +41,11 @@
                     <option>Happy</option>
                     <option>Sad</option>
                 </select>
-                <button>Set playlist to mood</button>
+                <button @click="test=true">Set playlist to mood</button>
                 <button @click="settingPlaylist=false">Cancel</button>
+                <div v-if="test">&nbsp;
+                    yo
+                </div>
             </div>
             <button v-if="!settingPlaylist" @click="settingPlaylist=true">Set a playlist to a mood</button>
         </div>
