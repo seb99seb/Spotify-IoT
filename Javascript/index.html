@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    
-    <!--<script src="https://sdk.scdn.co/spotify-player.js"></script>-->
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
@@ -25,30 +23,40 @@
             </form>
         </div>
         <div v-else>
+            <!--
+            <div v-if="!startUpDone">
+                {{ startUp() }}
+            </div>
+            -->
             <div v-if="tokenDone==false" hidden>
                 {{ fetchAccessToken() }}
             </div>
             <div v-if="!deviceIdDone && tokenDone" hidden>
                 {{ getDeviceId() }}
+                <button id="getPL" @click="getPlaylists()" hidden></button>
             </div>
+            <!--
+            <div v-if="!playlistDone && tokenDone" hidden>
+                {{ getPlaylists() }}
+            </div>
+            -->
             <button @click="playSong()">Play song from spotify window</button>
             <br><br>
-            <div v-show="settingPlaylist">
+            <div v-if="settingPlaylist">
                 <a>Set playlist to mood:</a><br>
                 <br><select name="Playlists">
                     <option v-for="playlist in myPlaylists">{{playlist.name}}</option>
                 </select>
-                <select name="Moods">
+                <select name="Moods" v-model="mood">
                     <option>Neutral</option>
                     <option>Happy</option>
                     <option>Sad</option>
                 </select>
-                <button>Set {{playlist}} to {{selectMood}}</button>
+                <!--<button>Set {{playlist}} to {{selectMood}}</button>-->
                 <button @click="settingPlaylist=false">Cancel</button>
             </div>
-            <button v-show="!settingPlaylist" @click="settingPlaylist=true">Set a playlist to a mood</button>
+            <button v-if="!settingPlaylist" @click="settingPlaylist=true">Set a playlist to a mood</button>
         </div>
-        <button @click="getPlaylists()">playlists</button>
     </div>
     <script src="index.js"></script>
 </body>
