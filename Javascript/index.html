@@ -23,36 +23,25 @@
             </form>
         </div>
         <div v-else>
-            <!--
-            <div v-if="!startUpDone">
-                {{ startUp() }}
-            </div>
-            -->
             <div v-if="tokenDone==false" hidden>
                 {{ fetchAccessToken() }}
-            </div>
-            <div v-if="!deviceIdDone && tokenDone" hidden>
-                {{ getDeviceId() }}
                 <button id="getPL" @click="getPlaylists()" hidden></button>
             </div>
-            <!--
-            <div v-if="!playlistDone && tokenDone" hidden>
-                {{ getPlaylists() }}
-            </div>
-            -->
             <button @click="playSong()">Play song from spotify window</button>
             <br><br>
             <div v-if="settingPlaylist">
                 <a>Set playlist to mood:</a><br>
-                <br><select name="Playlists">
+                <br><select name="Playlists" v-model="PL">
+                    <option value="" disabled selected hidden>Playlist</option>
                     <option v-for="playlist in myPlaylists">{{playlist.name}}</option>
                 </select>
-                <select name="Moods" v-model="mood">
+                <select name="Moods" v-model="mood" value="Neutral">
+                    <option value="" disabled selected hidden>Mood</option>
                     <option>Neutral</option>
                     <option>Happy</option>
                     <option>Sad</option>
                 </select>
-                <!--<button>Set {{playlist}} to {{selectMood}}</button>-->
+                <button>Set playlist to mood</button>
                 <button @click="settingPlaylist=false">Cancel</button>
             </div>
             <button v-if="!settingPlaylist" @click="settingPlaylist=true">Set a playlist to a mood</button>
