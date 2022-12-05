@@ -10,15 +10,13 @@ Vue.createApp({
             token: "",
             xhr: "",
             userId: "31kqpkdzy6346fcuw6jh6tom5a3e",
-            startUpDone: false,
             settingPlaylist: false,
             logginIn: false,
             tokenDone: false,
             deviceIdDone: false,
-            playlistDone: false,
             myPlaylists: [],
             mood: "",
-            playlist: ""
+            PL: ""
         }
     },
     methods: {
@@ -41,6 +39,8 @@ Vue.createApp({
         handleAuthorizationResponse(){
             var data = JSON.parse(this.xhr.responseText)
             this.token = data.access_token
+            document.getElementById("getPL").click()
+            console.log('test')
             this.tokenDone = true
             console.log(this.token)
         },
@@ -52,10 +52,10 @@ Vue.createApp({
             const data = await result.json()
             this.deviceId = data.devices[0].id
             console.log('device id:'+this.deviceId)
-            document.getElementById("getPL").click()
             this.deviceIdDone = true
         },
-        playSong(){
+        async playSong(){
+            await this.getDeviceId()
             this.xhr = new XMLHttpRequest()
             this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/play?device_id='+this.deviceId, true)
             this.xhr.setRequestHeader('Content-Type', 'application/json')
@@ -74,12 +74,6 @@ Vue.createApp({
         handlePlayslists(){
             var data = JSON.parse(this.xhr.responseText)
             this.myPlaylists = data.items
-            this.playlistDone = true
-            console.log('playlists')
-        },
-        setPlaylist(){
-            this.mood
-            this.playlist
         },
         getFragmentIdentifier(){
             const urlParams = new URLSearchParams(window.location.search);
@@ -87,12 +81,6 @@ Vue.createApp({
             if (urlParams.get('code')!=null){
                 this.logginIn=true
             }
-        },
-        async startUp(){
-            await this.fetchAccessToken()
-            await this.getDeviceId()
-            await this.getPlaylists()
-            this.startUpDone = true
         }
     }
 }).mount("#app")
