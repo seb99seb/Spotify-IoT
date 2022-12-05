@@ -16,7 +16,8 @@ Vue.createApp({
             deviceIdDone: false,
             myPlaylists: [],
             mood: "",
-            PL: ""
+            PL: "",
+            test: false
         }
     },
     methods: {
