@@ -9,6 +9,7 @@
 
 <body>
     <div id="app">
+        <!--<button @click="savePlaylistSQL()">SQL stuff</button> DOESN'T WORK-->
         <a href="https://open.spotify.com/" target="_blank">Open Spotify</a>
         <div v-if="!logginIn">
             {{ getFragmentIdentifier() }}
@@ -45,7 +46,7 @@
                 &nbsp;&nbsp;<button @click="selection()">Set</button>
                 <div v-if="selected">
                     <br>Are you sure that you want to set '{{PL}}' to your '{{mood}}' mood?
-                    <br><button>Confirm</button>
+                    <br><button @click="savePlaylistSQL">Confirm</button>
                     <!--<button @click="settingPlaylist=false">Cancel</button>-->
                 </div>
                 <div v-if="notSelected"><br>The input fields are not filled properly</div>

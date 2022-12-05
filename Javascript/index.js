@@ -93,6 +93,20 @@ Vue.createApp({
                 this.selected = false
             }
         },
+        savePlaylistSQL(){
+
+            //WIP
+            var mysql = require('mysql')
+            var con = mysql.createConnection({
+                host: 'mssql6.unoeuro.com',
+                user: 'embo_zealand_dk',
+                password: 'h69BryFf5dGD'
+            })
+            con.connect(function(err) {
+                if (err) throw err;
+                console.log("Connected!");
+                });
+        },
         getFragmentIdentifier(){
             const urlParams = new URLSearchParams(window.location.search);
             this.auth = urlParams.get('code');
