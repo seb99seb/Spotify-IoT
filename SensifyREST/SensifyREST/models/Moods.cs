@@ -5,7 +5,7 @@
         /// <summary>
         /// Properties
         /// </summary>
-        public string Mood { get; set; }
+        private string _mood;
 
         public string PlaylistID { get; set; }
 
@@ -15,8 +15,29 @@
         {
 
         }
+        public string Mood
+        {
+            get => _mood;
+            set
+            {
+                switch (value)
+                {
+                    case "happy":
+                        _mood=value;
+                        break;
 
+                    case "sad":
+                        _mood = value;
+                        break;
 
+                    case "neutral":
+                        _mood = value;
+                        break;
+
+                    default:
+                        throw new ArgumentException("find et rigtigt humør!!");
+                }
+            }
+        }
     }
-
 }

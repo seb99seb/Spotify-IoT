@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "ZVusqbWBZkKtVSg/sPKHQp+e2WpJJsut3iN06FImQv0=",
+  "Source": "SensifyREST",
+  "BasePath": "_content/SensifyREST",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
