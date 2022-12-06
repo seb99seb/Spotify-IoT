@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!--<button @click="savePlaylistSQL()">SQL stuff</button> DOESN'T WORK-->
+        <a href="https://open.spotify.com/" target="_blank">Open Spotify</a>
+        <div v-if="!logginIn">
+            {{ getFragmentIdentifier() }}
+            <form action="https://accounts.spotify.com/authorize" method="GET">
+                <div>
+                    <input name="client_id" :value="clientId" hidden>
+                    <input name="response_type" value="code" hidden>
+                    <input name="redirect_uri" :value="redirectURI" hidden>
+                    <input name="scope" :value="scopes" hidden>
+                    <input type="submit" value="Get auth">
+                </div>
+            </form>
+        </div>
+        <div v-else>
+            <div v-if="tokenDone==false" hidden>
+                {{ fetchAccessToken() }}
+                <button id="getPL" @click="getPlaylists()" hidden></button>
+            </div>
+            <button @click="playSong()">Play song from spotify window</button>
+            <br><br>
+            <div v-if="settingPlaylist">
+                <button @click="cancelSettingPlaylist()">Cancel</button><br>
+                <br><a>Set playlist to mood:</a>
+                <br><select name="Playlists" v-model="PL">
+                    <option value="" disabled selected hidden>Playlist</option>
+                    <option v-for="playlist in myPlaylists">{{playlist.name}}</option>
+                </select>
+                <select name="Moods" v-model="mood" value="Neutral">
+                    <option value="" disabled selected hidden>Mood</option>
+                    <option>Neutral</option>
+                    <option>Happy</option>
+                    <option>Sad</option>
+                </select>
+                &nbsp;&nbsp;<button @click="selection()">Set</button>
+                <div v-if="selected">
+                    <br>Are you sure that you want to set '{{PL}}' to your '{{mood}}' mood?
+                    <br><button @click="savePlaylistSQL">Confirm</button>
+                    <!--<button @click="settingPlaylist=false">Cancel</button>-->
+                </div>
+                <div v-if="notSelected"><br>The input fields are not filled properly</div>
+            </div>
+            <button v-if="!settingPlaylist" @click="settingPlaylist=true">Set a playlist to a mood</button>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
