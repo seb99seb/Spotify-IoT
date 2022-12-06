@@ -22,13 +22,6 @@ namespace UdpBroadcastCapture
         // https://msdn.microsoft.com/en-us/library/system.net.ipaddress.ipv6any.aspx
         static void Main()
         {
-            string input = Console.ReadLine();
-
-            if (input == "s")
-            {
-                RunAsync().GetAwaiter().GetResult();
-            }
-
             IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, Port);
             using (UdpClient socket = new UdpClient(ipEndPoint))
             {
@@ -43,7 +36,7 @@ namespace UdpBroadcastCapture
 
                     ReceiveStickEvent(message);
 
-                    //await CreateAsync(message);
+                    CreateAsync(message).GetAwaiter().GetResult();
                 }
             }
         }
