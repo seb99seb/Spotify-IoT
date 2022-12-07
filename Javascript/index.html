@@ -9,10 +9,11 @@
 
 <body>
     <div id="app">
-        <!--<button @click="savePlaylistSQL()">SQL stuff</button> DOESN'T WORK-->
-        <a href="https://open.spotify.com/" target="_blank">Open Spotify</a>
+        <button @click="getPlaylistId()">get playlist id set to happy</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://open.spotify.com/" target="_blank">Open Spotify</a>
         <div v-if="!logginIn">
             {{ getFragmentIdentifier() }}
+            <!-- A form that sends a GET call to spotify in order to get an authorization code -->
             <form action="https://accounts.spotify.com/authorize" method="GET">
                 <div>
                     <input name="client_id" :value="clientId" hidden>
@@ -35,9 +36,11 @@
                 <br><a>Set playlist to mood:</a>
                 <br><select name="Playlists" v-model="PL">
                     <option value="" disabled selected hidden>Playlist</option>
-                    <option v-for="playlist in myPlaylists">{{playlist.name}}</option>
+                    <option v-for="playlist in myPlaylists">
+                        {{playlist.name}}
+                    </option>
                 </select>
-                <select name="Moods" v-model="mood" value="Neutral">
+                <select name="Moods" v-model="mood">
                     <option value="" disabled selected hidden>Mood</option>
                     <option>Neutral</option>
                     <option>Happy</option>
@@ -46,8 +49,7 @@
                 &nbsp;&nbsp;<button @click="selection()">Set</button>
                 <div v-if="selected">
                     <br>Are you sure that you want to set '{{PL}}' to your '{{mood}}' mood?
-                    <br><button @click="savePlaylistSQL">Confirm</button>
-                    <!--<button @click="settingPlaylist=false">Cancel</button>-->
+                    <br><button @click="savePlaylistId">Confirm</button>
                 </div>
                 <div v-if="notSelected"><br>The input fields are not filled properly</div>
             </div>
