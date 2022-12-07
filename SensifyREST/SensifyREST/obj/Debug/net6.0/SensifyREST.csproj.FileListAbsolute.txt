@@ -64,3 +64,6 @@ C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST
 C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\SensifyREST.pdb
 C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\SensifyREST.genruntimeconfig.cache
 C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\ref\SensifyREST.dll
+C:\Users\sebva\source\repos\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\sebva\source\repos\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\sebva\source\repos\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\Newtonsoft.Json.dll

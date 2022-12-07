@@ -16,13 +16,13 @@ namespace SensifyREST.Services
         {
             switch (mood)
                 {
-                case "happy":
+                case "Happy":
                     return mood;
 
-                case "sad":
+                case "Sad":
                     return mood;
 
-                case "neutral":
+                case "Neutral":
                     return mood;
 
                 default:

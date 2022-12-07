@@ -1,6 +1,4 @@
 ﻿using SensifyREST.Managers;
-using SensifyREST.Services;
-using SensifyREST.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SensifyREST.Controllers
@@ -17,7 +15,7 @@ namespace SensifyREST.Controllers
             return MM.GetPlaylistIdByMood(mood);
         }
         [HttpPut]
-        [Route("playlistId/{mood}, {playlistId}")]
+        [Route("playlistId")]
         public void Put(string mood, string playlistId)
         {
             MM.SavePlaylistIdToMood(mood, playlistId);
