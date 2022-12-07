@@ -31,3 +31,36 @@ C:\Users\sebva\source\repos\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\run
 C:\Users\sebva\source\repos\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
 C:\Users\sebva\source\repos\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\sebva\source\repos\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\appsettings.json
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\SensifyREST.exe
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\SensifyREST.deps.json
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\SensifyREST.runtimeconfig.json
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\SensifyREST.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\SensifyREST.pdb
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\SensifyREST.csproj.AssemblyReference.cache
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\SensifyREST.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\SensifyREST.AssemblyInfoInputs.cache
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\SensifyREST.AssemblyInfo.cs
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\SensifyREST.csproj.CoreCompileInputs.cache
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\SensifyREST.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\SensifyREST.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\scopedcss\bundle\SensifyREST.styles.css
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\SensifyREST.csproj.CopyComplete
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\SensifyREST.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\refint\SensifyREST.dll
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\SensifyREST.pdb
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\SensifyREST.genruntimeconfig.cache
+C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyREST\obj\Debug\net6.0\ref\SensifyREST.dll

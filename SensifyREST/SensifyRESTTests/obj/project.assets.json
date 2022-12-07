@@ -7003,24 +7003,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sebva\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Freja\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sebva\\source\\repos\\Spotify\\SensifyREST\\SensifyRESTTests\\SensifyRESTTests.csproj",
+      "projectUniqueName": "C:\\Users\\Freja\\Documents\\Datamatiker udd\\3. semester\\SensiFy\\Spotify\\SensifyREST\\SensifyRESTTests\\SensifyRESTTests.csproj",
       "projectName": "SensifyRESTTests",
-      "projectPath": "C:\\Users\\sebva\\source\\repos\\Spotify\\SensifyREST\\SensifyRESTTests\\SensifyRESTTests.csproj",
-      "packagesPath": "C:\\Users\\sebva\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sebva\\source\\repos\\Spotify\\SensifyREST\\SensifyRESTTests\\obj\\",
+      "projectPath": "C:\\Users\\Freja\\Documents\\Datamatiker udd\\3. semester\\SensiFy\\Spotify\\SensifyREST\\SensifyRESTTests\\SensifyRESTTests.csproj",
+      "packagesPath": "C:\\Users\\Freja\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Freja\\Documents\\Datamatiker udd\\3. semester\\SensiFy\\Spotify\\SensifyREST\\SensifyRESTTests\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\sebva\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Freja\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7034,8 +7029,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\sebva\\source\\repos\\Spotify\\SensifyREST\\SensifyREST\\SensifyREST.csproj": {
-              "projectPath": "C:\\Users\\sebva\\source\\repos\\Spotify\\SensifyREST\\SensifyREST\\SensifyREST.csproj"
+            "C:\\Users\\Freja\\Documents\\Datamatiker udd\\3. semester\\SensiFy\\Spotify\\SensifyREST\\SensifyREST\\SensifyREST.csproj": {
+              "projectPath": "C:\\Users\\Freja\\Documents\\Datamatiker udd\\3. semester\\SensiFy\\Spotify\\SensifyREST\\SensifyREST\\SensifyREST.csproj"
             }
           }
         }
@@ -7083,7 +7078,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
