@@ -1,4 +1,4 @@
-﻿using SensifyREST.models;
+﻿using SensifyREST.Models;
 using System.Data.SqlClient;
 
 namespace SensifyREST.Services
@@ -12,23 +12,46 @@ namespace SensifyREST.Services
         {
             Moods = moods;
         }
-        /*
-        get mood
-        forbind mood to playlist
-        hint playlist kommer an på mood
-        */
-        public int GetPlaylistId ()
+        public string CheckMood(string mood)
         {
+            switch (mood)
+                {
+                case "happy":
+                    return mood;
+
+                case "sad":
+                    return mood;
+
+                case "neutral":
+                    return mood;
+
+                default:
+                    throw new ArgumentException("find et rigtigt humør!!");
+            }
+        }
+        public string GetPlaylistId (string mood)
+        {
+            CheckMood(mood);
             //SQL here
-            string sql = $"SELECT id FROM Mood WHERE id=1";
+            string sql = $"SELECT {mood} FROM Mood WHERE {mood}={mood}";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(sql, connection);
-                int id = Convert.ToInt32(cmd.ExecuteScalar());
-
+                string id = cmd.ExecuteScalar().ToString().Trim();
                 return id;
             }
-        }        
+        }
+        public void SavePlaylistId(string mood, string playlistId)
+        {
+            CheckMood(mood);
+            string sql = $"UPDATE Mood SET {mood} = '{playlistId}'";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(sql, connection);
+                cmd.ExecuteReader();
+            }
+        }
     }
 }

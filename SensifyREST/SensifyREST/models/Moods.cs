@@ -1,16 +1,10 @@
-﻿namespace SensifyREST.models
+﻿namespace SensifyREST.Models
 {
     public class Moods
     {
-        /// <summary>
-        /// Properties
-        /// </summary>
         private string _mood;
-
         public string PlaylistID { get; set; }
-
-        public DateTime CurrentDate { get; set; }
-
+        //public DateTime CurrentDate { get; set; }
         public Moods()
         {
 

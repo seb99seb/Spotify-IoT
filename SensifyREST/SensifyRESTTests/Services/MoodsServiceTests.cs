@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SensifyREST.models;
+using SensifyREST.Models;
 using SensifyREST.Services;
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace SensifyREST.Service.Tests
         [DataRow("happy")]
         [DataRow("sad")]
         [DataRow("neutral")]
-        public void GetMoodTestok(string mood)
+        public void GetMoodTestOK(string mood)
         {
             // act
             string expectedMood = mood;
@@ -55,15 +55,48 @@ namespace SensifyREST.Service.Tests
             });
         }
         [TestMethod()]
-        public void GetPlaylistIdSuccess()
+        [DataRow("happy")]
+        [DataRow("sad")]
+        [DataRow("neutral")]
+        public void GetPlaylistIdSuccess(string mood)
         {
             //Act
 
             //Arrange
-            int id = ms.GetPlaylistId();
+            string id = ms.GetPlaylistId(mood);
 
             //Assert
-            Assert.IsTrue(id>0);
+            Assert.IsTrue(id.Length>0);
+        }
+        [TestMethod()]
+        [DataRow("Happy")]
+        [DataRow("noooo")]
+        public void GetPlaylistIdFail(string mood)
+        {
+            //Act
+
+            //Arrange
+
+            //Assert
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                string id = ms.GetPlaylistId(mood);
+            });
+        }
+        [TestMethod()]
+        [DataRow("happy", "happytest")]
+        [DataRow("sad", "sadtest")]
+        [DataRow("neutral", "neutraltest")]
+        public void SavePlaylistIdSuccess(string mood, string playlistId)
+        {
+            //Act
+
+            //Arrange
+            ms.SavePlaylistId(mood, playlistId);
+            string id = ms.GetPlaylistId(mood);
+
+            //Assert
+            Assert.AreEqual(id, playlistId);
         }
     }
 }
