@@ -1,4 +1,4 @@
-BROADCAST_TO_PORT = 7234
+BROADCAST_TO_PORT = 7000
 
 from socket import *
 from sense_hat import SenseHat
