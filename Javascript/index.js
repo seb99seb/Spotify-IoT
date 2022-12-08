@@ -101,6 +101,15 @@ Vue.createApp({
             this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
             this.xhr.send()
         },
+        /**Pauses the currently playing music via device id */
+        async pauseSong(){
+            await this.getDeviceId()
+            this.xhr = new XMLHttpRequest()
+            this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/pause?device_id='+this.deviceId, true)
+            this.xhr.setRequestHeader('Content-Type', 'application/json')
+            this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
+            this.xhr.send()
+        },
         /**Gets 40 of the playlists registered on a Spotify account */
         getPlaylists(){
             this.xhr = new XMLHttpRequest()
