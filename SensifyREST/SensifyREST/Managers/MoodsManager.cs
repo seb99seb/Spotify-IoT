@@ -19,5 +19,9 @@ namespace SensifyREST.Managers
         {
             _moodsService.UpdateCurrentMood(direction);
         }
+        public string GetCurrentMood()
+        {
+            return _moodsService.GetCurrentMood();
+        }
     }
 }

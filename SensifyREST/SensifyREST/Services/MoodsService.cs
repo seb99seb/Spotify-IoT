@@ -99,5 +99,16 @@ namespace SensifyREST.Services
                     throw new ArgumentException();
             }
         }
+        public string GetCurrentMood()
+        {
+            string sql = $"SELECT CurrentMood FROM Mood";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(sql, connection);
+                string CurrentMood = cmd.ExecuteScalar().ToString().Trim();
+                return CurrentMood;
+            }
+        }
     }
 }

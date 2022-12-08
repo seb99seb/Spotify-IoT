@@ -20,7 +20,6 @@ namespace SensifyREST.Service.Tests
             ms = new MoodsService();
         }
 
-
         [TestMethod()]
         [DataRow("Happy")]
         [DataRow("Sad")]
