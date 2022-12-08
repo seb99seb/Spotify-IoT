@@ -3,6 +3,6 @@ HOW TO USE
 2: Type "cd mikkel/Spotify" to change the folder
 3: (Optional) Make sure the RaspberryPi is on the branch "RaspberryPi-Broadcast" by typing "git branch"
 4: (Optional) Make sure the branch is updated by typing "git pull"
-4: Type "python3 BroadcastEmotion.py" to start the program
-5: Press the joystick to send stick event directions
-6: Run "UdpBroadcast.py" in PyCharm and receive directions from the RaspberryPi and send it to the REST Service
+5: Type "python3 BroadcastEmotion.py" to start the program
+6: Press the joystick to send stick event directions
+7: Run "UdpBroadcast.py" in PyCharm and receive directions from the RaspberryPi and send it to the REST Service
