@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SensifyREST.Models;
 using SensifyREST.Services;
 using System;
 using System.Collections.Generic;
@@ -13,30 +12,27 @@ namespace SensifyREST.Service.Tests
     public class MoodsServiceTests
     {
         // shared instance field
-        private Moods m;
         private MoodsService ms;
 
         [TestInitialize]
         public void BeforEachTest()
         {
-            m = new Moods();
-            ms = new MoodsService(m);
+            ms = new MoodsService();
         }
 
 
         [TestMethod()]
-        [DataRow("happy")]
-        [DataRow("sad")]
-        [DataRow("neutral")]
+        [DataRow("Happy")]
+        [DataRow("Sad")]
+        [DataRow("Neutral")]
         public void GetMoodTestOK(string mood)
         {
             // act
-            string expectedMood = mood;
-            m.Mood = mood;
+            string actualMood = ms.CheckMood(mood);
 
             // Assert
 
-            Assert.AreEqual(expectedMood, m.Mood);
+            Assert.AreEqual(mood, actualMood);
         }
 
         [TestMethod()]
@@ -46,18 +42,17 @@ namespace SensifyREST.Service.Tests
         public void GetMoodTestFail(string mood)
         {
             // Act
-            string expectedMood = mood;
 
             // Assert
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                m.Mood = mood;
+                ms.CheckMood(mood);
             });
         }
         [TestMethod()]
-        [DataRow("happy")]
-        [DataRow("sad")]
-        [DataRow("neutral")]
+        [DataRow("Happy")]
+        [DataRow("Sad")]
+        [DataRow("Neutral")]
         public void GetPlaylistIdSuccess(string mood)
         {
             //Act
@@ -69,7 +64,7 @@ namespace SensifyREST.Service.Tests
             Assert.IsTrue(id.Length>0);
         }
         [TestMethod()]
-        [DataRow("Happy")]
+        [DataRow("happy")]
         [DataRow("noooo")]
         public void GetPlaylistIdFail(string mood)
         {
@@ -84,9 +79,9 @@ namespace SensifyREST.Service.Tests
             });
         }
         [TestMethod()]
-        [DataRow("happy", "happytest")]
-        [DataRow("sad", "sadtest")]
-        [DataRow("neutral", "neutraltest")]
+        [DataRow("Happy", "happytest")]
+        [DataRow("Sad", "sadtest")]
+        [DataRow("Neutral", "neutraltest")]
         public void SavePlaylistIdSuccess(string mood, string playlistId)
         {
             //Act

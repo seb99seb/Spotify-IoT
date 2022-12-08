@@ -230,3 +230,5 @@ C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST
 C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyRESTTests\obj\Debug\net6.0\SensifyRESTTests.pdb
 C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyRESTTests\obj\Debug\net6.0\SensifyRESTTests.genruntimeconfig.cache
 C:\Users\Freja\Documents\Datamatiker udd\3. semester\SensiFy\Spotify\SensifyREST\SensifyRESTTests\obj\Debug\net6.0\ref\SensifyRESTTests.dll
+C:\Users\sebva\source\repos\Spotify\SensifyREST\SensifyRESTTests\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\sebva\source\repos\Spotify\SensifyREST\SensifyRESTTests\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
