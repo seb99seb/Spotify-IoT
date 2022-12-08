@@ -7,13 +7,13 @@ http = urllib3.PoolManager()
 urllib3.disable_warnings()
 
 # URI to the REST Service
-URI = "http://localhost:5093/api/Moods"
+URI = "https://sensifyrest2022.azurewebsites.net//api/Moods"
 
 serverPort = 7000
 serverSocket = socket(AF_INET, SOCK_DGRAM)
 serverSocket.bind(('', serverPort))
 
-# While the program is running, execute code to receive broadcast messages from RaspberryPi and make Post requests to REST Service
+# While the program is running, execute code to receive broadcast messages from RaspberryPi and make Put requests to REST Service
 print("The server is ready to receive")
 while True:
     # Receive message from RaspberryPi
