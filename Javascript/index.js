@@ -1,4 +1,4 @@
-const baseUri = "http://localhost:5093/api/Moods/playlistId"
+const baseUri = "https://sensifyrest2022.azurewebsites.net/api/Moods/playlistId"
 Vue.createApp({
     data() {
         return {
@@ -43,7 +43,7 @@ Vue.createApp({
             /**The mood given by the user, via Raspberry Pi */
             currentMood: "Happy",
             /**The playlist id that is connected to the string "currentMood" */
-            currentPlaylistId: ""
+            currentPlaylistId: "2dBlZg79Q5bLYso5yPimy5"
         }
     },
     methods: {
@@ -95,8 +95,25 @@ Vue.createApp({
         /**Not done */
         async playSong(){
             await this.getDeviceId()
+            console.log(this.deviceId)
+            await this.getCurrentMood()
+            console.log(this.currentMood)
+            await this.getPlaylistId()
+            console.log(this.currentPlaylistId)
+            let body = {}
+            body.context_uri = 'spotify:playlist:' + this.currentPlaylistId
+            //console.log(body)
             this.xhr = new XMLHttpRequest()
             this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/play?device_id='+this.deviceId, true)
+            this.xhr.setRequestHeader('Content-Type', 'application/json')
+            this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
+            this.xhr.send(JSON.stringify(body))
+        },
+        /**Pauses the currently playing music via device id */
+        async pauseSong(){
+            await this.getDeviceId()
+            this.xhr = new XMLHttpRequest()
+            this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/pause?device_id='+this.deviceId, true)
             this.xhr.setRequestHeader('Content-Type', 'application/json')
             this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
             this.xhr.send()
@@ -144,6 +161,10 @@ Vue.createApp({
                 }
             });
             await axios.put(baseUri + "?mood=" + this.mood + "&playlistId=" + this.playlistId)
+        },
+        async getCurrentMood(){
+            await axios.get('https://sensifyrest2022.azurewebsites.net/api/Moods')
+            .then(response => (this.currentMood = response.data))
         },
         /**Gets a playlist according to the mood the user has, i.e. the mood chosen on the Raspberry Pi */
         async getPlaylistId(){

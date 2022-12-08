@@ -9,8 +9,8 @@
 
 <body>
     <div id="app">
-        <button @click="getPlaylistId()">get playlist id set to happy</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://open.spotify.com/" target="_blank">Open Spotify</a>
+        <!--<button @click="getPlaylistId()">get playlist id set to happy</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://open.spotify.com/" target="_blank">Open Spotify</a>-->
         <!-- Code that runs when an authorization code has not been gotten -->
         <div v-if="!logginIn">
             {{ getFragmentIdentifier() }}
@@ -32,7 +32,8 @@
                 {{ fetchAccessToken() }}
                 <button id="getPL" @click="getPlaylists()" hidden></button>
             </div>
-            <button @click="playSong()">Play song from spotify window</button>
+            <button @click="playSong()">Play song from spotify window Happy playlist</button>
+            <button @click="pauseSong()">Pause song from spotify window</button>
             <br><br>
             <div v-if="settingPlaylist">
                 <button @click="cancelSettingPlaylist()">Cancel</button><br>
