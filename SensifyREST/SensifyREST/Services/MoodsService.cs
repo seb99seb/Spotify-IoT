@@ -69,5 +69,35 @@ namespace SensifyREST.Services
                 cmd.ExecuteReader();
             }
         }
+
+        public void UpdateCurrentMood(string direction)
+        {
+            string sql = $"UPDATE Mood SET CurrentMood = '{CheckDirection(direction)}'";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(sql, connection);
+                cmd.ExecuteReader();
+            }
+        }
+
+        private string CheckDirection(string direction)
+        {
+            switch (direction)
+            {
+                case "up":
+                    return "Neutral";
+                case "down":
+                    return "Stop";
+                case "left":
+                    return "Happy";
+                case "right":
+                    return "Sad";
+                case "middle":
+                    return "Stop";
+                default:
+                    throw new ArgumentException();
+            }
+        }
     }
 }

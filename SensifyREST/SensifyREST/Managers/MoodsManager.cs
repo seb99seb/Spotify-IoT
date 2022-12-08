@@ -15,5 +15,9 @@ namespace SensifyREST.Managers
             _moodsService.CheckMood(mood);
             _moodsService.SavePlaylistId(mood, playlistId);
         }
+        public void UpdateCurrentMood(string direction)
+        {
+            _moodsService.UpdateCurrentMood(direction);
+        }
     }
 }

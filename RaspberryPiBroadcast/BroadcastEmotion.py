@@ -1,12 +1,11 @@
-BROADCAST_TO_PORT = 7000
-
 from socket import *
 from sense_hat import SenseHat
 
+# Port to broadcast messages
+BROADCAST_TO_PORT = 7000
+
 sense = SenseHat()
 s = socket(AF_INET, SOCK_DGRAM)
-#s.bind(('', 14593))     # (ip, port)
-# no explicit bind: will bind to default IP + random port
 s.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
 
 # Define the colors
@@ -15,7 +14,7 @@ G = (0, 255, 0)
 B = (0, 0, 255)
 O = (0, 0, 0)
 
-# Define the lists of pixel values
+# Define the lists of pixel values for emotions
 neutral = [
   O, O, B, B, B, B, O, O,
   O, B, O, O, O, O, B, O,
@@ -49,7 +48,7 @@ sad = [
   O, O, R, R, R, R, O, O,
   ]
 
-# Define the functions
+# Define the functions for setting emotions
 def setneutral():
   sense.set_pixels(neutral)
   
@@ -61,7 +60,9 @@ def setsad():
 
 # This keeps the program running to receive joystick events
 while True:
+  # Executes everytime the stick is pressed in a direction
 	for event in sense.stick.get_events():
+    # Check for the direction and set emotion
 		if event.direction == "up":
 			setneutral()
 		elif event.direction == "down":
@@ -72,6 +73,7 @@ while True:
 			setsad()
 		elif event.direction == "middle":
 			sense.clear()
+    # If the stick is pressed, broadcast direction as message to port
 		if event.action == "pressed":
 			data = "" + str(event.direction)
 			s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))

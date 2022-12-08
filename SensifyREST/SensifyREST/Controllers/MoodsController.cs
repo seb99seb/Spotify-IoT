@@ -20,5 +20,11 @@ namespace SensifyREST.Controllers
         {
             MM.SavePlaylistIdToMood(mood, playlistId);
         }
+
+        [HttpPut]
+        public void PutCurrentMood(string direction)
+        {
+            MM.UpdateCurrentMood(direction);
+        }
     }
 }
