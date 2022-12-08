@@ -21,12 +21,10 @@ Vue.createApp({
             /**The user id of our specific Spotify account - note: needs Spotify premium to work */
             userId: "31kqpkdzy6346fcuw6jh6tom5a3e",
             /**Bool used to trigger a v-if statement in index.html for whether or not the user
-             * is setting a playlist to a mood
-             */
+            is setting a playlist to a mood */
             settingPlaylist: false,
             /**Bool used so that only a part of the HTML shows when first entering the site - 
-             * will be set to true once "auth" has been set
-             */
+            will be set to true once "auth" has been set */
             logginIn: false,
             /**Bool used for only getting a token once, since every new token overwrites the old one */
             tokenDone: false,
@@ -49,9 +47,8 @@ Vue.createApp({
         }
     },
     methods: {
-        /**Method that initializes the process of getting an authorization code,
-         * and puts together the body that is sent to Spotify to get it
-         */
+        /**Method that initializes the process of getting a token, 
+        and puts together the body that is sent to Spotify to get it */
         fetchAccessToken(){
             let body = 'grant_type=authorization_code'
             body += '&code=' + this.auth
@@ -60,7 +57,7 @@ Vue.createApp({
             body += '&client_secret=' + this.clientSecret
             this.callAuthorizationApi(body)
         },
-        /**The Method that sends the POST call to Spotify to retrieve an authorization code */
+        /**The Method that sends the POST call to Spotify to retrieve a token */
         callAuthorizationApi(body){
             //defines 'xhr' as an XMLHTTPRequest
             this.xhr = new XMLHttpRequest()
@@ -74,7 +71,7 @@ Vue.createApp({
             //sends the data to another method to handle the data
             this.xhr.onload = this.handleAuthorizationResponse
         },
-        /**Method that handles the data gotten from the "callAuthorizationApi()" method, the authorization code */
+        /**Method that handles the data gotten from the "callAuthorizationApi()" method, the token */
         handleAuthorizationResponse(){
             //converts the data from JSON to data readable by JS
             var data = JSON.parse(this.xhr.responseText)

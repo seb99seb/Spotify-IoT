@@ -11,6 +11,7 @@
     <div id="app">
         <button @click="getPlaylistId()">get playlist id set to happy</button>
         &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://open.spotify.com/" target="_blank">Open Spotify</a>
+        <!-- Code that runs when an authorization code has not been gotten -->
         <div v-if="!logginIn">
             {{ getFragmentIdentifier() }}
             <!-- A form that sends a GET call to spotify in order to get an authorization code -->
@@ -24,7 +25,9 @@
                 </div>
             </form>
         </div>
+        <!-- Runs when an authorization code has been gotten -->
         <div v-else>
+            <!-- Gets a token only once -->
             <div v-if="tokenDone==false" hidden>
                 {{ fetchAccessToken() }}
                 <button id="getPL" @click="getPlaylists()" hidden></button>
