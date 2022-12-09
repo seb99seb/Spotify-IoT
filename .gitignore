@@ -587,3 +587,14 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/vuejs,python,visualstudio,visualstudiocode
+SensifyREST/.vs/SensifyREST/DesignTimeBuild/.dtbcache.v2
+SensifyREST/SensifyREST/obj/project.nuget.cache
+SensifyREST/SensifyREST/obj/SensifyREST.csproj.nuget.dgspec.json
+SensifyREST/SensifyREST/obj/Debug/net6.0/SensifyREST.assets.cache
+SensifyREST/SensifyREST/obj/Debug/net6.0/SensifyREST.GeneratedMSBuildEditorConfig.editorconfig
+SensifyREST/SensifyRESTTests/bin/Debug/net6.0/CoverletSourceRootsMapping
+SensifyREST/SensifyRESTTests/obj/project.assets.json
+SensifyREST/SensifyRESTTests/obj/project.nuget.cache
+SensifyREST/SensifyRESTTests/obj/SensifyRESTTests.csproj.nuget.dgspec.json
+SensifyREST/SensifyRESTTests/obj/Debug/net6.0/SensifyRESTTests.assets.cache
+SensifyREST/SensifyRESTTests/obj/Debug/net6.0/SensifyRESTTests.GeneratedMSBuildEditorConfig.editorconfig
