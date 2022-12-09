@@ -1,0 +1,59 @@
+body {
+    background-color: lightpink;
+    font-family: sans-serif;
+    color: blue;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+button {
+    margin: 20px;
+    margin-bottom: 30px;
+    background-color: green;
+    color: black;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    width: fit-content;
+    height: fit-content;
+    display: inline-block;
+}
+
+input {
+    width: 25%;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+
+.dropbtn {
+    background-color: blue;
+    color: black;
+    padding: 16px;
+    font-size: 16;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: pink;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    /*padding: 12px 16px;*/
+    z-index: 1;
+}
+
+dropdown:hover .dropdown-content {
+    display: block;
+    background-color: gray;
+}

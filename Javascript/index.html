@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css"/>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
@@ -21,7 +22,8 @@
                     <input name="response_type" value="code" hidden>
                     <input name="redirect_uri" :value="redirectURI" hidden>
                     <input name="scope" :value="scopes" hidden>
-                    <input type="submit" value="Get authentication - By pressing this button, you acknowledge that we are using your data in accoring with GDPR">
+                    By pressing the button, you acknowledge that we are using your data in accoring with GDPR <br>
+                    <input type="submit" value="Get authentication ">
                 </div>
             </form>
         </div>
@@ -53,7 +55,6 @@
                 <input v-model="userId"><br>
             </div>
 
-            <a>aa</a>
 
             <button @click="setUser=true">Set user name</button><br>
             <div v-if="settingPlaylist && setUser" >
@@ -65,12 +66,31 @@
                         {{playlist.name}}
                     </option>
                 </select>
-                <select name="Moods" v-model="mood">
-                    <option value="" disabled selected hidden>Mood</option>
-                    <option>Neutral</option>
-                    <option>Happy</option>
-                    <option>Sad</option>
-                </select>
+
+                
+                    <select name="Moods" v-model="mood">
+                        
+                        <option value="" disabled selected hidden>Mood</option>
+                        <option>Neutral</option>
+                        <option>Happy</option>
+                        <option>Sad</option>  
+                       
+                    </select>
+                    
+
+                    <!--
+                    <div class="dropdown" name="moods">
+                        <button class="dropbtn" v-mode="mood">Mood</button>
+                        <button class="dropbtn" disabled selected hidden>Mood</button>
+                        <div class="dropdown-content">
+                            <option>Neutral</option>
+                            <option>Happy</option>
+                            <option>Sad</option>
+                        </div>
+                    </div>
+                    -->
+                
+                
                 &nbsp;&nbsp;<button @click="selection()">Set</button>
                 <div v-if="selected">
                     <br>Are you sure that you want to set '{{PL}}' to your '{{mood}}' mood?
