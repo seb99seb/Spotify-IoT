@@ -21,8 +21,7 @@
                     <input name="response_type" value="code" hidden>
                     <input name="redirect_uri" :value="redirectURI" hidden>
                     <input name="scope" :value="scopes" hidden>
-                    <input type="submit" value="Get auth. By pressing this button, you acknowledge that we are using your data in accoring with GDPR">
-                    <!--<div v-if=""-->
+                    <input type="submit" value="Get authentication - By pressing this button, you acknowledge that we are using your data in accoring with GDPR">
                 </div>
             </form>
         </div>
@@ -33,7 +32,14 @@
                 {{ fetchAccessToken() }}
                 <button id="getPL" @click="getPlaylists()" hidden></button>
             </div>
-            <button @click="playSong()">Play song from spotify window Happy playlist</button>
+            <button @click="currentMood='Sad'">S</button>
+            <button @click="currentMood='Happy'">H</button>
+            <button @click="currentMood='Neutral'">N</button>
+            <button v-if="!listening" @click="listening=true">Start listening for current mood</button><br>
+            <div v-if="listening">
+                <button @click="listening=false">Stop listening for current mood</button>
+                <a hidden>{{ playSong() }}</a>
+            </div>
             <button @click="pauseSong()">Pause song from spotify window</button>
             <br><br>
             <div v-if="settingPlaylist">
@@ -54,7 +60,7 @@
                 &nbsp;&nbsp;<button @click="selection()">Set</button>
                 <div v-if="selected">
                     <br>Are you sure that you want to set '{{PL}}' to your '{{mood}}' mood?
-                    <br><button @click="savePlaylistId">Confirm</button>
+                    <br><button @click="savePlaylistId()">Confirm</button>
                 </div>
                 <div v-if="notSelected"><br>The input fields are not filled properly</div>
             </div>

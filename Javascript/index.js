@@ -41,9 +41,12 @@ Vue.createApp({
             /**For seeing if both input fields have an option choosen */
             selected: false,
             /**The mood given by the user, via Raspberry Pi */
-            currentMood: "Happy",
+            currentMood: "",
             /**The playlist id that is connected to the string "currentMood" */
-            currentPlaylistId: "2dBlZg79Q5bLYso5yPimy5"
+            currentPlaylistId: "2dBlZg79Q5bLYso5yPimy5",
+            /**Bool controlling if the user is trying to play their playlist from given mood or not */
+            listening: false,
+            currentPlayingMood: ""
         }
     },
     methods: {
@@ -94,20 +97,37 @@ Vue.createApp({
         },
         /**Not done */
         async playSong(){
-            await this.getDeviceId()
-            console.log(this.deviceId)
-            await this.getCurrentMood()
-            console.log(this.currentMood)
-            await this.getPlaylistId()
-            console.log(this.currentPlaylistId)
-            let body = {}
-            body.context_uri = 'spotify:playlist:' + this.currentPlaylistId
-            //console.log(body)
-            this.xhr = new XMLHttpRequest()
-            this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/play?device_id='+this.deviceId, true)
-            this.xhr.setRequestHeader('Content-Type', 'application/json')
-            this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
-            this.xhr.send(JSON.stringify(body))
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            this.currentPlayingMood = ""
+            while(true){
+                await sleep(3000)
+                if(!this.listening){
+                    break
+                }
+                if(this.currentMood==this.currentPlayingMood){
+                    //nothing happens
+                }
+                else{
+                    this.currentPlayingMood = this.currentMood
+                    await this.getDeviceId()
+                    console.log('device id:' + this.deviceId)
+                    //await this.getCurrentMood()
+                    console.log('current mood' + this.currentMood)
+                    await this.getPlaylistId()
+                    console.log('current playlist id' + this.currentPlaylistId)
+                    let body = {}
+                    body.context_uri = 'spotify:playlist:' + this.currentPlaylistId
+                    //console.log(body)
+                    this.xhr = new XMLHttpRequest()
+                    this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/play?device_id='+this.deviceId, true)
+                    this.xhr.setRequestHeader('Content-Type', 'application/json')
+                    this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
+                    this.xhr.send(JSON.stringify(body))
+                }
+                await sleep(3000)
+            }
         },
         /**Pauses the currently playing music via device id */
         async pauseSong(){
@@ -161,6 +181,8 @@ Vue.createApp({
                 }
             });
             await axios.put(baseUri + "?mood=" + this.mood + "&playlistId=" + this.playlistId)
+            this.selected = false
+            this.notSelected = false
         },
         async getCurrentMood(){
             await axios.get('https://sensifyrest2022.azurewebsites.net/api/Moods')
