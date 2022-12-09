@@ -24,7 +24,6 @@ namespace SensifyREST.Service.Tests
         [DataRow("Happy")]
         [DataRow("Sad")]
         [DataRow("Neutral")]
-        [DataRow("Happy")]
         public void GetMoodTestOK(string mood)
         {
             // act
