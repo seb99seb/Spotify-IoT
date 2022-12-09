@@ -598,3 +598,6 @@ SensifyREST/SensifyRESTTests/obj/project.nuget.cache
 SensifyREST/SensifyRESTTests/obj/SensifyRESTTests.csproj.nuget.dgspec.json
 SensifyREST/SensifyRESTTests/obj/Debug/net6.0/SensifyRESTTests.assets.cache
 SensifyREST/SensifyRESTTests/obj/Debug/net6.0/SensifyRESTTests.GeneratedMSBuildEditorConfig.editorconfig
+SensifyREST/SensifyRESTTests/bin/Debug/net6.0/CoverletSourceRootsMapping
+SensifyREST/SensifyRESTTests/obj/Debug/net6.0/SensifyRESTTests.assets.cache
+SensifyREST/SensifyRESTTests/obj/Debug/net6.0/SensifyRESTTests.GeneratedMSBuildEditorConfig.editorconfig
