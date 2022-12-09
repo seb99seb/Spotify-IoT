@@ -46,7 +46,8 @@ Vue.createApp({
             currentPlaylistId: "2dBlZg79Q5bLYso5yPimy5",
             /**Bool controlling if the user is trying to play their playlist from given mood or not */
             listening: false,
-            currentPlayingMood: ""
+            currentPlayingMood: "",
+            volume: 50
         }
     },
     methods: {
@@ -81,7 +82,6 @@ Vue.createApp({
             //the given data has our access token
             this.token = data.access_token
             //method is called to get the playlists of the user through a button
-            document.getElementById("getPL").click()
             this.tokenDone = true
             //console.log(this.token)
         },
@@ -104,6 +104,9 @@ Vue.createApp({
             while(true){
                 await sleep(3000)
                 if(!this.listening){
+                    break
+                }
+                if(this.currentMood == "Stop"){
                     break
                 }
                 if(this.currentMood==this.currentPlayingMood){
@@ -140,6 +143,7 @@ Vue.createApp({
         },
         /**Gets 40 of the playlists registered on a Spotify account */
         getPlaylists(){
+            console.log('test')
             this.xhr = new XMLHttpRequest()
             var url = 'https://api.spotify.com/v1/users/' + this.userId + '/playlists?limit=40'
             this.xhr.open('GET', url, true)
@@ -152,6 +156,7 @@ Vue.createApp({
         handlePlayslists(){
             var data = JSON.parse(this.xhr.responseText)
             this.myPlaylists = data.items
+            this.settingPlaylist=true
         },
         /**Resets the variables used in adding a playlist to a mood */
         cancelSettingPlaylist(){
