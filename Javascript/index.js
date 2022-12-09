@@ -47,7 +47,8 @@ Vue.createApp({
             /**Bool controlling if the user is trying to play their playlist from given mood or not */
             listening: false,
             currentPlayingMood: "",
-            volume: 50
+            volume: 50,
+            setUser: false
         }
     },
     methods: {

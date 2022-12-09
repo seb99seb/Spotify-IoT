@@ -46,10 +46,15 @@
                 {{volume}}
             </div>
             <button @click="pauseSong()">Pause song from spotify window</button>
-            <br><br>
-            <a>Set a playlist from specified user with their username:</a><br>
-            <input v-model="userId"><br><br>
-            <div v-if="settingPlaylist">
+            <br>
+            <br>
+            <div id="setUser">
+                <a>Set a playlist from specified user with their username:</a><br>
+                <input v-model="userId"><br>
+            </div>
+
+            <button @click="setUser=true">Set user name</button><br>
+            <div v-if="settingPlaylist && setUser" >
                 <button @click="cancelSettingPlaylist()">Cancel</button><br>
                 <br><a>Set playlist to mood:</a>
                 <br><select name="Playlists" v-model="PL">
