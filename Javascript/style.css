@@ -20,6 +20,15 @@ button {
     display: inline-block;
 }
 
+button:hover {
+    background-color: aquamarine;
+}
+
+button:active {
+    background-color: chartreuse;
+    transform: translateY(4px);
+}
+
 input {
     width: 25%;
     height: 40px;
@@ -53,7 +62,7 @@ input {
     z-index: 1;
 }
 
-dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content {
     display: block;
     background-color: gray;
 }
