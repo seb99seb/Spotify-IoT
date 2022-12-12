@@ -1,7 +1,8 @@
 body {
-    background-color: lightpink;
-    font-family: sans-serif; /* spotify's oficielle skrifttype */
-    color: blue;
+    background-color: #191414;
+    font-family: sans-serif; /* spotify's oficielle skrifttype 
+    https://developer.spotify.com/documentation/general/design-and-branding/#using-our-colors */
+    color: #FFFFFF;
     margin-left: 10%;
     margin-top: 5%;
 }
@@ -9,7 +10,7 @@ body {
 button {
     margin: 20px;
     margin-bottom: 30px;
-    background-color: green;
+    background-color: #1DB954;
     color: black;
     border-radius: 5px;
     padding: 20px;
