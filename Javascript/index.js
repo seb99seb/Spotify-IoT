@@ -141,6 +141,18 @@ Vue.createApp({
             this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
             this.xhr.send()
         },
+        /**Volume slider function - set volume of music */
+        async volumeChange(){
+            await this.getDeviceId()
+            this.xhr = new XMLHttpRequest()
+            this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/volume?device_id='+this.deviceId, true)
+            this.xhr.setRequestHeader('Accept', 'application/json')
+            this.xhr.setRequestHeader('Content-Type', 'application/json')
+            this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
+            this.xhr.send()
+            
+            
+        },
         /**Gets 40 of the playlists registered on a Spotify account */
         getPlaylists(){
             console.log('test')
