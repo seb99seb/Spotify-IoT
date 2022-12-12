@@ -47,8 +47,7 @@ Vue.createApp({
             /**Bool controlling if the user is trying to play their playlist from given mood or not */
             listening: false,
             currentPlayingMood: "",
-            volume: 50,
-            setUser: false
+            volume: 50
         }
     },
     methods: {
@@ -183,6 +182,14 @@ Vue.createApp({
                 this.notSelected = true
                 this.selected = false
             }
+        },
+        async changeVolume(){
+            var volume = document.getElementById('volume').value
+            this.xhr = new XMLHttpRequest()
+            this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/volume?device_id='+this.deviceId+'&volume_percent='+volume, true)
+            this.xhr.setRequestHeader('Content-Type', 'application/json')
+            this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
+            this.xhr.send()
         },
         /**Saves the chosen playlist id to the database in accordance to the chosen mood through an API call to our RESTful service */
         async savePlaylistId(){
