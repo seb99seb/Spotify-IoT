@@ -143,13 +143,73 @@ Vue.createApp({
         },
         /**Volume slider function - set volume of music */
         async volumeChange(){
+            // Get a reference to the volume slider
+            const volumeSlider = document.getElementById('volume-slider');
+
+            // Add an event listener for changes to the slider
+            volumeSlider.addEventListener('input', function() {
+            // Get the current value of the slider
+            var volume = this.value;
+
+            // Use the Spotify API to set the volume
+            // Replace "DEVICE_ID" with the ID of the device you want to control
+            
+            console.log(volume)
+            /*fetch(`https://api.spotify.com/v1/me/player/volume?device_id=${this.deviceId}&volume_percent=${volume}`, {
+                method: 'PUT',
+                headers: {
+                'Authorization': 'Bearer '+this.token,
+                }
+            });*/
+            this.xhr = new XMLHttpRequest()
+            this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/volume?device_id='+this.deviceId+'&volume_percent='+volume, true)
+            this.xhr.setRequestHeader('Accept', 'application/json')
+            this.xhr.setRequestHeader('Content-Type', 'application/json')
+            this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
+            this.xhr.send()
+            });
+
+            /*
             await this.getDeviceId()
             this.xhr = new XMLHttpRequest()
             this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/volume?device_id='+this.deviceId, true)
             this.xhr.setRequestHeader('Accept', 'application/json')
             this.xhr.setRequestHeader('Content-Type', 'application/json')
             this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
+            this.xhr.send()/*
+            var audio = new Audio("test.wav")
+            audio.play();
+            var myAudioObject = new Audio();
+            for (var key in myAudioObject)
+            {
+                if(typeof myAudioObject[key] === "function")
+                {
+                    console.log(key);
+                }
+            }
+            /*await this.getDeviceId()
+            this.xhr = new XMLHttpRequest()
+            this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/volume?device_id='+this.deviceId, true)
+            this.xhr.setRequestHeader('Accept', 'application/json')
+            this.xhr.setRequestHeader('Content-Type', 'application/json')
+            this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
             this.xhr.send()
+            
+            function setVolume(volume) {
+                // select the volume input element
+                const volumeInput = document.getElementById('volume');
+                this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/volume?device_id='+this.deviceId, true)
+              
+                // set the value of the input element to the desired volume
+                volumeInput.value = volume;
+              }
+              const volumeMuteButton = document.getElementById('volume-mute-button');
+
+volumeMuteButton.addEventListener('click', () => {
+  setVolume(0); // sets the volume to 0% (muted) when the button is clicked
+});
+
+            */
             
             
         },

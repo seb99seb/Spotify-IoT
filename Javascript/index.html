@@ -40,12 +40,22 @@
                 <a hidden>{{ playSong() }}</a>
             </div>
             <!--Volume slider-->
-            <div class="volume">
+            <!--<div class="volume">
                 <p id="show-volume">Volume</p>
                 <i class="fas fa-volume-mute" id="volume-icon"></i>
                 <input type="range" id="volume" v-model="volume" min="0" max="100" value="50" />
                 {{volume}}
+            </div>-->
+
+            <!-- HTML for the volume slider -->
+            <div class="volume">
+                <label for="volume-slider">Volume:</label>
+                <input type="range" min="0" max="100" value="50" id="volume-slider">
             </div>
+            <button @click="volumeChange()">Set volume</button>
+                
+
+
             <button @click="pauseSong()">Pause song from spotify window</button>
             <br><br>
             <a>Set a playlist from specified user with their username:</a><br>
