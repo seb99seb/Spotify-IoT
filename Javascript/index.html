@@ -37,72 +37,48 @@
             <div v-if="tokenDone==false" hidden>
                 {{ fetchAccessToken() }}
             </div>
-            <button @click="currentMood='Sad'">S</button>
-            <button @click="currentMood='Happy'">H</button>
-            <button @click="currentMood='Neutral'">N</button><br>
-            <button v-if="!listening" @click="listening=true">Start listening for current mood</button><br>
-            <div v-if="listening">
-                <button @click="listening=false">Stop listening for current mood</button>
-                <a hidden>{{ playSong() }}</a>
+            <div v-if="!settingPlaylist">
+                <button v-if="!listening" @click="listening=true">Start listening for current mood</button><br>
+                <div v-if="listening">
+                    <button @click="listening=false">Stop listening for current mood</button><br>
+                    <a hidden>{{ playSong() }}</a>
+                    <button @click="resumeSong()">Resume</button>
+                    <button @click="pauseSong()">Pause</button>
+                    <div class="volume">
+                        <p id="show-volume">Volume</p>
+                        <i class="fas fa-volume-mute" id="volume-icon"></i>
+                        <input type="range" id="volume" v-model="volume" min="0" max="100" value="50" />
+                    </div>
+                </div>
             </div>
-            <div class="volume">
-                <p id="show-volume">Volume</p>
-                <i class="fas fa-volume-mute" id="volume-icon"></i>
-                <input type="range" id="volume" v-model="volume" min="0" max="100" value="50" />
-                {{volume}}
-            </div>
-            <button @click="pauseSong()">Pause song from spotify window</button>
-            <br>
-            <br>
-            <div id="setUser">
+            <br><br>
+            <div v-if="!listening">
                 <a>Set a playlist from specified user with their username:</a><br>
                 <input v-model="userId"><br>
-            </div>
-
-
-            <button @click="setUser=true">Set user name</button><br>
-            <div v-if="settingPlaylist && setUser" >
-                <button @click="cancelSettingPlaylist()">Cancel</button><br>
-                <br><a>Set playlist to mood:</a>
-                <br><select name="Playlists" v-model="PL">
-                    <option value="" disabled selected hidden>Playlist</option>
-                    <option v-for="playlist in myPlaylists">
-                        {{playlist.name}}
-                    </option>
-                </select>
-
-                
-                    <select name="Moods" v-model="mood">
-                        
-                        <option value="" disabled selected hidden>Mood</option>
-                        <option>Neutral</option>
-                        <option>Happy</option>
-                        <option>Sad</option>  
-                       
+                <div v-if="settingPlaylist">
+                    <button @click="cancelSettingPlaylist()">Cancel</button><br>
+                    <br><a>Set playlist to mood:</a>
+                    <br><select name="Playlists" v-model="PL">
+                        <option value="" disabled selected hidden>Playlist</option>
+                        <option v-for="playlist in myPlaylists">
+                            {{playlist.name}}
+                        </option>
                     </select>
-                    
-
-                    <!--
-                    <div class="dropdown" name="moods">
-                        <button class="dropbtn" v-mode="mood">Mood</button>
-                        <button class="dropbtn" disabled selected hidden>Mood</button>
-                        <div class="dropdown-content">
+                        <select name="Moods" v-model="mood">
+                            <option value="" disabled selected hidden>Mood</option>
                             <option>Neutral</option>
                             <option>Happy</option>
                             <option>Sad</option>
-                        </div>
+                        </select>
+                    &nbsp;&nbsp;<button @click="selection()">Set</button>
+                    <div v-if="selected">
+                        <br>Are you sure that you want to set '{{PL}}' to your '{{mood}}' mood?
+                        <br><button @click="savePlaylistId()">Confirm</button>
                     </div>
-                    -->
-                
-                
-                &nbsp;&nbsp;<button @click="selection()">Set</button>
-                <div v-if="selected">
-                    <br>Are you sure that you want to set '{{PL}}' to your '{{mood}}' mood?
-                    <br><button @click="savePlaylistId()">Confirm</button>
+                    <div v-if="notSelected"><br>The input fields are not filled properly</div>
                 </div>
-                <div v-if="notSelected"><br>The input fields are not filled properly</div>
+                <button v-if="!settingPlaylist" @click="getPlaylists()">Set a playlist to a mood</button>
             </div>
-            <button v-if="!settingPlaylist" @click="getPlaylists()">Set a playlist to a mood</button>
         </div>
     </div>
     <script src="index.js"></script>

@@ -101,29 +101,26 @@ Vue.createApp({
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
-            this.currentPlayingMood = ""
+            this.currentPlayingMood = "temp"
             while(true){
+                this.getCurrentMood()
+                console.log('current mood ' + this.currentMood)
                 await sleep(3000)
                 if(!this.listening){
+                    this.pauseSong()
                     break
                 }
-                if(this.currentMood == "Stop"){
-                    break
+                else if(this.currentMood == "Stop"){
+                    this.pauseSong()
                 }
-                if(this.currentMood==this.currentPlayingMood){
-                    //nothing happens
-                }
-                else{
+                else if(this.currentMood!=this.currentPlayingMood){
                     this.currentPlayingMood = this.currentMood
                     await this.getDeviceId()
                     console.log('device id:' + this.deviceId)
-                    //await this.getCurrentMood()
-                    console.log('current mood' + this.currentMood)
                     await this.getPlaylistId()
                     console.log('current playlist id' + this.currentPlaylistId)
                     let body = {}
                     body.context_uri = 'spotify:playlist:' + this.currentPlaylistId
-                    //console.log(body)
                     this.xhr = new XMLHttpRequest()
                     this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/play?device_id='+this.deviceId, true)
                     this.xhr.setRequestHeader('Content-Type', 'application/json')
@@ -138,6 +135,14 @@ Vue.createApp({
             await this.getDeviceId()
             this.xhr = new XMLHttpRequest()
             this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/pause?device_id='+this.deviceId, true)
+            this.xhr.setRequestHeader('Content-Type', 'application/json')
+            this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
+            this.xhr.send()
+        },
+        async resumeSong(){
+            await this.getDeviceId()
+            this.xhr = new XMLHttpRequest()
+            this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/play?device_id='+this.deviceId, true)
             this.xhr.setRequestHeader('Content-Type', 'application/json')
             this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
             this.xhr.send()
