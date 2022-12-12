@@ -45,9 +45,7 @@
                     <button @click="resumeSong()">Resume</button>
                     <button @click="pauseSong()">Pause</button>
                     <div class="volume">
-                        <p id="show-volume">Volume</p>
-                        <i class="fas fa-volume-mute" id="volume-icon"></i>
-                        <input type="range" id="volume" v-model="volume" min="0" max="100" value="50" />
+                        <input @input="changeVolume()" type="range" id="volume" min="0" max="100" value="50"/>
                     </div>
                 </div>
             </div>
