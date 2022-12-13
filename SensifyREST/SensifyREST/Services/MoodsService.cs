@@ -81,6 +81,8 @@ namespace SensifyREST.Services
             }
         }
 
+
+        /// metode til at læse retningen og hvad den retning betyder
         private string CheckDirection(string direction)
         {
             switch (direction)
@@ -99,6 +101,8 @@ namespace SensifyREST.Services
                     throw new ArgumentException();
             }
         }
+
+        ///Metode til at hente det nuværende humør fra databasen.
         public string GetCurrentMood()
         {
             string sql = $"SELECT CurrentMood FROM Mood";
