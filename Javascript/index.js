@@ -112,18 +112,28 @@ Vue.createApp({
                     console.log('device id: ' + this.deviceId)
                     await this.getPlaylistId()
                     console.log('current playlist id: ' + this.currentPlaylistId)
+                    var offsetPos = Math.floor(Math.random() * await this.getPlaylistFromId())
                     let body = {}
                     body.context_uri = 'spotify:playlist:' + this.currentPlaylistId
+                    body.offset = {}
+                    body.offset.position = offsetPos
                     this.xhr = new XMLHttpRequest()
                     this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/play?device_id='+this.deviceId, true)
                     this.xhr.setRequestHeader('Content-Type', 'application/json')
                     this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
                     this.xhr.send(JSON.stringify(body))
                 }
-                //await sleep(3000)
             }
             this.pauseSong()
             console.log('Stopped listening')
+        },
+        async getPlaylistFromId(){
+            const result = await fetch('https://api.spotify.com/v1/playlists/' + this.currentPlaylistId + '?market=ES', {
+                method: 'GET',
+                headers: { 'Authorization' : 'Bearer ' + this.token}
+            })
+            const data = await result.json()
+            return data.tracks.total
         },
         /**Pauses the currently playing music via device id */
         async pauseSong(){
@@ -156,7 +166,7 @@ Vue.createApp({
         handlePlayslists(){
             var data = JSON.parse(this.xhr.responseText)
             this.myPlaylists = data.items
-            this.settingPlaylist=true
+            this.settingPlaylist = true
         },
         /**Resets the variables used in adding a playlist to a mood */
         cancelSettingPlaylist(){
