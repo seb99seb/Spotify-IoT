@@ -46,8 +46,7 @@ Vue.createApp({
             currentPlaylistId: "2dBlZg79Q5bLYso5yPimy5",
             /**Bool controlling if the user is trying to play their playlist from given mood or not */
             listening: false,
-            currentPlayingMood: "",
-            volume: 50
+            currentPlayingMood: ""
         }
     },
     methods: {
@@ -101,23 +100,18 @@ Vue.createApp({
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
             this.currentPlayingMood = "temp"
-            while(true){
-                this.getCurrentMood()
-                console.log('current mood ' + this.currentMood)
-                await sleep(3000)
-                if(!this.listening){
-                    this.pauseSong()
-                    break
-                }
-                else if(this.currentMood == "Stop"){
+            while(this.listening){
+                await this.getCurrentMood()
+                console.log('current mood: ' + this.currentMood)
+                if(this.currentMood == "Stop"){
                     this.pauseSong()
                 }
                 else if(this.currentMood!=this.currentPlayingMood){
                     this.currentPlayingMood = this.currentMood
                     await this.getDeviceId()
-                    console.log('device id:' + this.deviceId)
+                    console.log('device id: ' + this.deviceId)
                     await this.getPlaylistId()
-                    console.log('current playlist id' + this.currentPlaylistId)
+                    console.log('current playlist id: ' + this.currentPlaylistId)
                     let body = {}
                     body.context_uri = 'spotify:playlist:' + this.currentPlaylistId
                     this.xhr = new XMLHttpRequest()
@@ -126,8 +120,10 @@ Vue.createApp({
                     this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
                     this.xhr.send(JSON.stringify(body))
                 }
-                await sleep(3000)
+                //await sleep(3000)
             }
+            this.pauseSong()
+            console.log('Stopped listening')
         },
         /**Pauses the currently playing music via device id */
         async pauseSong(){
@@ -148,7 +144,6 @@ Vue.createApp({
         },
         /**Gets 40 of the playlists registered on a Spotify account */
         getPlaylists(){
-            console.log('test')
             this.xhr = new XMLHttpRequest()
             var url = 'https://api.spotify.com/v1/users/' + this.userId + '/playlists?limit=40'
             this.xhr.open('GET', url, true)
@@ -185,6 +180,7 @@ Vue.createApp({
         },
         async changeVolume(){
             var volume = document.getElementById('volume').value
+            document.getElementById('showVolume').innerHTML = volume + '%'
             this.xhr = new XMLHttpRequest()
             this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/volume?device_id='+this.deviceId+'&volume_percent='+volume, true)
             this.xhr.setRequestHeader('Content-Type', 'application/json')
