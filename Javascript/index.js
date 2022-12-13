@@ -46,8 +46,7 @@ Vue.createApp({
             currentPlaylistId: "2dBlZg79Q5bLYso5yPimy5",
             /**Bool controlling if the user is trying to play their playlist from given mood or not */
             listening: false,
-            currentPlayingMood: "",
-            volumeChanged: false
+            currentPlayingMood: ""
         }
     },
     methods: {
@@ -103,16 +102,16 @@ Vue.createApp({
             this.currentPlayingMood = "temp"
             while(this.listening){
                 await this.getCurrentMood()
-                console.log('current mood ' + this.currentMood)
+                console.log('current mood: ' + this.currentMood)
                 if(this.currentMood == "Stop"){
                     this.pauseSong()
                 }
                 else if(this.currentMood!=this.currentPlayingMood){
                     this.currentPlayingMood = this.currentMood
                     await this.getDeviceId()
-                    console.log('device id:' + this.deviceId)
+                    console.log('device id: ' + this.deviceId)
                     await this.getPlaylistId()
-                    console.log('current playlist id' + this.currentPlaylistId)
+                    console.log('current playlist id: ' + this.currentPlaylistId)
                     let body = {}
                     body.context_uri = 'spotify:playlist:' + this.currentPlaylistId
                     this.xhr = new XMLHttpRequest()
@@ -124,8 +123,7 @@ Vue.createApp({
                 //await sleep(3000)
             }
             this.pauseSong()
-            this.volumeChanged = false
-            console.log('stopped')
+            console.log('Stopped listening')
         },
         /**Pauses the currently playing music via device id */
         async pauseSong(){
@@ -182,10 +180,7 @@ Vue.createApp({
         },
         async changeVolume(){
             var volume = document.getElementById('volume').value
-            console.log(volume)
             document.getElementById('showVolume').innerHTML = volume + '%'
-            //console.log(document.getElementById('volume').value)
-            this.volumeChanged = true
             this.xhr = new XMLHttpRequest()
             this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/volume?device_id='+this.deviceId+'&volume_percent='+volume, true)
             this.xhr.setRequestHeader('Content-Type', 'application/json')
