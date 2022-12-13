@@ -14,12 +14,17 @@ namespace SensifyREST.Service.Tests
         // shared instance field
         private MoodsService ms;
 
+
+        /// Test Initialize
+        /// initialiserer en ny moodService før hver test. 
         [TestInitialize]
         public void BeforEachTest()
         {
             ms = new MoodsService();
         }
 
+
+        /// tester de accepterede humør-retninger
         [TestMethod()]
         [DataRow("Happy")]
         [DataRow("Sad")]
@@ -34,13 +39,16 @@ namespace SensifyREST.Service.Tests
             Assert.AreEqual(mood, actualMood);
         }
 
+
+        /// tester nogle IKKE accepterede humør-retninger
         [TestMethod()]
         [DataRow("sa")]
         [DataRow("neeeeuuuutraaaaaaalllllleees")]
-
         public void GetMoodTestFail(string mood)
         {
-            // Act
+            // Act - i test initialize 
+
+            // Arrange i lambdaudtryk i assert
 
             // Assert
             Assert.ThrowsException<ArgumentException>(() =>
@@ -48,13 +56,15 @@ namespace SensifyREST.Service.Tests
                 ms.CheckMood(mood);
             });
         }
+
+        /// Accepterede humør-inputs til at finde spillelisteID
         [TestMethod()]
         [DataRow("Happy")]
         [DataRow("Sad")]
         [DataRow("Neutral")]
         public void GetPlaylistIdSuccess(string mood)
         {
-            //Act
+            //Act - i test initialize 
 
             //Arrange
             string id = ms.GetPlaylistId(mood);
@@ -62,14 +72,16 @@ namespace SensifyREST.Service.Tests
             //Assert
             Assert.IsTrue(id.Length>0);
         }
+
+        /// Ikke accepterede humør-inputs
         [TestMethod()]
         [DataRow("happy")]
         [DataRow("noooo")]
         public void GetPlaylistIdFail(string mood)
         {
-            //Act
+            //Act - i test initialize 
 
-            //Arrange
+            //Arrange - foregår i lambdaudtryk i assert
 
             //Assert
             Assert.ThrowsException<ArgumentException>(() =>
@@ -77,6 +89,8 @@ namespace SensifyREST.Service.Tests
                 string id = ms.GetPlaylistId(mood);
             });
         }
+
+        /// Metode til at teste humøt og spillelister
         [TestMethod()]
         [DataRow("Happy", "happytest")]
         [DataRow("Sad", "sadtest")]
