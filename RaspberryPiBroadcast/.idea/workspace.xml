@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d74ac7d1-9ff0-48ff-b171-f5318c10f936" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Javascript/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Javascript/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Javascript/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Javascript/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SensifyREST/.vs/SensifyREST/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../SensifyREST/.vs/SensifyREST/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SensifyREST/SensifyRESTTests/bin/Debug/net6.0/CoverletSourceRootsMapping" beforeDir="false" afterPath="$PROJECT_DIR$/../SensifyREST/SensifyRESTTests/bin/Debug/net6.0/CoverletSourceRootsMapping" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SensifyREST/SensifyRESTTests/obj/Debug/net6.0/SensifyRESTTests.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../SensifyREST/SensifyRESTTests/obj/Debug/net6.0/SensifyRESTTests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SensifyREST/SensifyRESTTests/obj/Debug/net6.0/SensifyRESTTests.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SensifyREST/SensifyRESTTests/obj/Debug/net6.0/SensifyRESTTests.assets.cache" afterDir="false" />
-    </list>
+    <list default="true" id="d74ac7d1-9ff0-48ff-b171-f5318c10f936" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
