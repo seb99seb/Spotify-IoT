@@ -6,3 +6,4 @@ HOW TO USE
 5: Type "python3 BroadcastEmotion.py" to start the program
 6: Press the joystick to send stick event directions
 7: Run "UdpBroadcast.py" in PyCharm and receive directions from the RaspberryPi and send it to the REST Service
+(If you don't have the Requests module installed type "py -m pip install requests" into the terminal in PyCharm.)
