@@ -5,6 +5,8 @@ from sense_hat import SenseHat
 BROADCAST_TO_PORT = 7000
 
 sense = SenseHat()
+
+# Create client UDP socket
 s = socket(AF_INET, SOCK_DGRAM)
 s.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)
 
@@ -73,7 +75,7 @@ while True:
 			setsad()
 		elif event.direction == "middle":
 			sense.clear()
-    # If the stick is pressed, broadcast direction as message to port
+    # If the stick is pressed, broadcast direction as type string to port and print the direction
 		if event.action == "pressed":
 			data = "" + str(event.direction)
 			s.sendto(bytes(data, "UTF-8"), ('<broadcast>', BROADCAST_TO_PORT))

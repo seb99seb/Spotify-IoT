@@ -9,7 +9,10 @@ urllib3.disable_warnings()
 # URI to the REST Service
 URI = "https://sensifyrest2022.azurewebsites.net//api/Moods"
 
+# Port to broadcast messages
 serverPort = 7000
+
+# Create client UDP socket
 serverSocket = socket(AF_INET, SOCK_DGRAM)
 serverSocket.bind(('', serverPort))
 
