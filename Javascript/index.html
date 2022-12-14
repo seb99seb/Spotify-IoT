@@ -48,6 +48,7 @@
                     <button @click="resumeSong()">Resume</button>
                     <button @click="pauseSong()">Pause</button>
                     <!-- Volume slider that calls "changeVolume()" method everytime its moved -->
+                    <br>Volume:<br>
                     <div class="volume">
                         <input @input="changeVolume()" type="range" id="volume" min="0" max="100" value="50"/>
                         <!-- shows "50%" on the site until the slider has been moved, thus replacing the 
