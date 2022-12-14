@@ -14,6 +14,7 @@ serverPort = 7000
 
 # Create client UDP socket
 serverSocket = socket(AF_INET, SOCK_DGRAM)
+# Bind the port number to the socket
 serverSocket.bind(('', serverPort))
 
 # While the program is running, execute code to receive broadcast messages from RaspberryPi and make Put requests to REST Service
