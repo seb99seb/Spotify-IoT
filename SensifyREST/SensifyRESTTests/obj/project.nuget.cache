@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pe1PcHPpvQR8DUBN7u5uAtLalVWQUDhJe2RTHbBXxgP8woqhiBWheO9yM2pa5TmEFzMSy4n2ohSBQ1R81HhQ9g==",
+  "dgSpecHash": "vEmBIx3JY6gGK8tIdpVAr2oiOroh1Zm2/ay+GoxdsKjKu4ZcOFEzOkJ11gWhS5opbsinxBwkEO4tcmulE0QaDQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sebva\\Source\\Repos\\Spotify\\SensifyREST\\SensifyRESTTests\\SensifyRESTTests.csproj",
+  "projectFilePath": "C:\\Users\\sebva\\source\\repos\\Spotify\\SensifyREST\\SensifyRESTTests\\SensifyRESTTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sebva\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\sebva\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

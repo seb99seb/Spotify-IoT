@@ -17,6 +17,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+//cors allowing everything - headers, methods and origins
 app.UseCors(x => x
     .AllowAnyHeader()
     .AllowAnyMethod()

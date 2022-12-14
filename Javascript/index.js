@@ -8,7 +8,7 @@ Vue.createApp({
             clientSecret: '25bed5e8f08a43ac9f914b920dae2b4b',
             /**The scopes that we want for our token, allows for use of certain API calls */
             scopes: "user-read-playback-state playlist-read-private user-modify-playback-state",
-            /**URI for getting back to our site af going to Spotify's site */
+            /**URI for getting back to our site after going to Spotify's site */
             redirectURI: "http://localhost:5501/",
             /**The id of an open window of spotify, used to play music */
             deviceId: "",
@@ -42,10 +42,13 @@ Vue.createApp({
             selected: false,
             /**The mood given by the user, via Raspberry Pi */
             currentMood: "",
-            /**The playlist id that is connected to the string "currentMood" */
+            /**The playlist id that is connected to the string "currentMood", with the default value of
+            the playlist id of our happy playlist */
             currentPlaylistId: "2dBlZg79Q5bLYso5yPimy5",
             /**Bool controlling if the user is trying to play their playlist from given mood or not */
             listening: false,
+            /**String used to compare to "currentMood", so that it can see whether or not the mood given
+            from the Raspberry Pi */
             currentPlayingMood: ""
         }
     },
@@ -84,49 +87,74 @@ Vue.createApp({
             this.tokenDone = true
             //console.log(this.token)
         },
-        /**Gets the id of one of the open Spotify windows logged on the Spotify account */
+        /**Gets the id of one of the open Spotify windows logged on the Spotify account -
+        method is async so that "await" can be used, so that the program doesn't just run
+        all the code in the method before having fetched the GET call, but instead wait till
+        the line is done */
         async getDeviceId(){
             const result = await fetch(`https://api.spotify.com/v1/me/player/devices`, {
                 method: 'GET',
                 headers: { 'Authorization' : 'Bearer ' + this.token}
             })
+            //Handles the data, and saves the first device id gotten from the list of device id's
             const data = await result.json()
             this.deviceId = data.devices[0].id
             //console.log('device id:'+this.deviceId)
         },
         /**Not done */
         async playSong(){
+            //Function for adding delay the method, can be used if the while loop loops too fast and
+            //makes too many API calls
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
+            //Resets the "currentPlayingMood" value, so that the "playSong()" method works in repeated usage
             this.currentPlayingMood = "temp"
+            //While loop that runs while the user is in the listening section of the site
             while(this.listening){
+                //Gets the mood that is currently stored in the database, used to check if the current mood
+                //has been replaced by the Raspberry Pi
                 await this.getCurrentMood()
                 console.log('current mood: ' + this.currentMood)
+                //If the Raspberry Pi joystick get clicked or points down a "Stop" mood is sent, which
+                //pauses the playing song
                 if(this.currentMood == "Stop"){
                     this.pauseSong()
                 }
+                //If the mood gotten from the database is new, this statement goes through
                 else if(this.currentMood!=this.currentPlayingMood){
+                    //Sets "currentPlayingMood" as "currentMood", so that they can be compared again when
+                    //it loops again
                     this.currentPlayingMood = this.currentMood
+                    //Makes sure it has the correct device id to use
                     await this.getDeviceId()
                     console.log('device id: ' + this.deviceId)
+                    //Gets the new playlist to be played
                     await this.getPlaylistId()
                     console.log('current playlist id: ' + this.currentPlaylistId)
+                    //Some randomness based on the length of the given playlist, so that it picks
+                    //a random song to play from that playlist
                     var offsetPos = Math.floor(Math.random() * await this.getPlaylistFromId())
+                    //Defining the body that is to be send via a PUT call
                     let body = {}
+                    //The part of the body that points at what playlist to be used
                     body.context_uri = 'spotify:playlist:' + this.currentPlaylistId
                     body.offset = {}
+                    //The part of the body that points at how far into the playlist we start listening to music from
                     body.offset.position = offsetPos
                     this.xhr = new XMLHttpRequest()
                     this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/play?device_id='+this.deviceId, true)
                     this.xhr.setRequestHeader('Content-Type', 'application/json')
                     this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
+                    //Turns the body into JSON, so that it can be understood at Spotify
                     this.xhr.send(JSON.stringify(body))
                 }
             }
+            //When the while loop stops, the song stops aswell
             this.pauseSong()
             console.log('Stopped listening')
         },
+        /**Async method that returns the number of tracks in a playlist via a GET call */
         async getPlaylistFromId(){
             const result = await fetch('https://api.spotify.com/v1/playlists/' + this.currentPlaylistId + '?market=ES', {
                 method: 'GET',
@@ -144,6 +172,7 @@ Vue.createApp({
             this.xhr.setRequestHeader('Authorization', 'Bearer ' + this.token)
             this.xhr.send()
         },
+        /**Resumes the currently choosen music via device id */
         async resumeSong(){
             await this.getDeviceId()
             this.xhr = new XMLHttpRequest()
@@ -188,8 +217,12 @@ Vue.createApp({
                 this.selected = false
             }
         },
+        //Method that is called everytime the volume slider is moved, it sends a PUT call to Spotify 
+        //telling them to change their volume level percentage to whatever the volume slider is showing
         async changeVolume(){
+            //Gets the value of the volume slider by the id of its element
             var volume = document.getElementById('volume').value
+            //Displays the volume percentage besides the volume slider in the HTML
             document.getElementById('showVolume').innerHTML = volume + '%'
             this.xhr = new XMLHttpRequest()
             this.xhr.open('PUT', 'https://api.spotify.com/v1/me/player/volume?device_id='+this.deviceId+'&volume_percent='+volume, true)
@@ -199,15 +232,16 @@ Vue.createApp({
         },
         /**Saves the chosen playlist id to the database in accordance to the chosen mood through an API call to our RESTful service */
         async savePlaylistId(){
+            this.selected = false
+            this.notSelected = false
             this.myPlaylists.forEach(playlist => {
                 if (this.PL == playlist.name){
                     this.playlistId = playlist.id
                 }
             });
             await axios.put(baseUri + "?mood=" + this.mood + "&playlistId=" + this.playlistId)
-            this.selected = false
-            this.notSelected = false
         },
+        /**A call to our API to retrieve the mood stored in the database */
         async getCurrentMood(){
             await axios.get('https://sensifyrest2022.azurewebsites.net/api/Moods')
             .then(response => (this.currentMood = response.data))

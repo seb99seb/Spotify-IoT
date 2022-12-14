@@ -69,7 +69,10 @@ namespace SensifyREST.Services
                 cmd.ExecuteReader();
             }
         }
-
+        /// <summary>
+        /// Void method that uses SQL to update the "CurrentMood" value in the database using the "direction" string given as a parameter
+        /// </summary>
+        /// <param name="direction">The string given to the method, used for determining which mood to put into the database</param>
         public void UpdateCurrentMood(string direction)
         {
             string sql = $"UPDATE Mood SET CurrentMood = '{CheckDirection(direction)}'";
@@ -80,11 +83,17 @@ namespace SensifyREST.Services
                 cmd.ExecuteReader();
             }
         }
-
-
-        /// metode til at læse retningen og hvad den retning betyder
+        /// <summary>
+        /// Checks if the given string is either "up", "down", "right", "left" or "middle" - depending on
+        /// which direction is given, it will return a different string, corrosponding to a mood or "Stop",
+        /// a signal send on the tell that there is now no mood
+        /// </summary>
+        /// <param name="direction">The string given to the method, used for determining which string to return</param>
+        /// <returns>Will return either "Neutral", "Stop", "Happy", "Sad", "Stop" or a ArgumentExeption</returns>
+        /// <exception cref="ArgumentException">If the parameter "direction" is not a valid direction, it will return this exception</exception>
         private string CheckDirection(string direction)
         {
+            //switch statement that looks at all the valid values for direction to have
             switch (direction)
             {
                 case "up":
@@ -102,7 +111,10 @@ namespace SensifyREST.Services
             }
         }
 
-        ///Metode til at hente det nuværende humør fra databasen.
+        /// <summary>
+        /// Method that open a SQL connection to then get the mood that is currently saved in the database
+        /// </summary>
+        /// <returns>Returns the mood saved in the database as a string</returns>
         public string GetCurrentMood()
         {
             string sql = $"SELECT CurrentMood FROM Mood";
@@ -110,6 +122,8 @@ namespace SensifyREST.Services
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand(sql, connection);
+                //"ExecuteScalar()" to only get one value from the database, "ToString()" to make it a string to easily return it,
+                //and "Trim()" to make sure theres no blank spaces behind the mood
                 string CurrentMood = cmd.ExecuteScalar().ToString().Trim();
                 return CurrentMood;
             }

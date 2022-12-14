@@ -10,16 +10,15 @@
 
 <body>
     <div id="app">
+        <!-- Clickable logo that sends the user to Spotify's webplayer -->
         <a href="https://open.spotify.com/" target="_blank">
             <img src="./pics/Spotify_Logo_CMYK_White.png" alt="Spotify Logo"
             style="float:right; width: 140px; height: 42px; margin-right: 10px;">
         </a>
-        <!--<button @click="getPlaylistId()">get playlist id set to happy</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://open.spotify.com/" target="_blank">Open Spotify</a>-->
         <!-- Code that runs when an authorization code has not been gotten -->
         <div v-if="!logginIn">
             {{ getFragmentIdentifier() }}
-            <!-- A form that sends a GET call to spotify in order to get an authorization code -->
+            <!-- A form that sends a GET call to Spotify in order to get an authorization code -->
             <form action="https://accounts.spotify.com/authorize" method="GET">
                 <div>
                     <input name="client_id" :value="clientId" hidden>
@@ -37,46 +36,69 @@
             <div v-if="tokenDone==false" hidden>
                 {{ fetchAccessToken() }}
             </div>
+            <!-- This v-if makes sure that the button under it doesn't show when you're 
+                selecting a playlist to add to a mood -->
             <div v-if="!settingPlaylist">
+                <!-- Button that shows the rest of the div when clicked -->
                 <button v-if="!listening" @click="listening=true">Start listening for current mood</button><br>
                 <div v-if="listening">
                     <button @click="listening=false">Stop listening for current mood</button><br>
+                    <!-- Calls "playSong()" method, which has a while loop in it, to keep it listening for a new mood -->
                     <a hidden>{{ playSong() }}</a>
                     <button @click="resumeSong()">Resume</button>
                     <button @click="pauseSong()">Pause</button>
+                    <!-- Volume slider that calls "changeVolume()" method everytime its moved -->
                     <div class="volume">
                         <input @input="changeVolume()" type="range" id="volume" min="0" max="100" value="50"/>
+                        <!-- shows "50%" on the site until the slider has been moved, thus replacing the 
+                            content of the element -->
                         <a id="showVolume">50%</a>
                     </div>
                 </div>
             </div>
-            <br><br>
+            <!-- This v-if makes sure that the button under it doesn't show when you're 
+                selecting a listening for a mood -->
             <div v-if="!listening">
-                <a>Set a playlist from specified user with their username:</a><br>
-                <input v-model="userId"><br>
+                <!-- Button that shows the rest of the div when clicked -->
+                <button v-if="!settingPlaylist" @click="getPlaylists()">Set a playlist to a mood</button>
                 <div v-if="settingPlaylist">
-                    <button @click="cancelSettingPlaylist()">Cancel</button><br>
-                    <br><a>Set playlist to mood:</a>
-                    <br><select name="Playlists" v-model="PL">
+                    <a>Set a playlist from specified user with their username:</a><br>
+                    <!-- Input field that changes the "userId" variable, which contains the username of
+                        a Spotify user - it has a default value which is instantly shown on the page -->
+                    <input v-model="userId">
+                    <!-- If something new has been typed in the above input field, then this button gets
+                        the playlists of the new username - for this to work the given user must be added
+                        to the Spotify Dashboard -->
+                    <button @click="getPlaylists()">Choose this user</button>
+                    <br><a>Set playlist to mood:</a><br>
+                    <!-- Select element used for choosing what playlist used for adding to a mood -->
+                    <select name="Playlists" v-model="PL">
                         <option value="" disabled selected hidden>Playlist</option>
+                        <!-- v-for loop that goes through every playlist in the "myPlaylists" list
+                            and the shows their name -->
                         <option v-for="playlist in myPlaylists">
                             {{playlist.name}}
                         </option>
                     </select>
-                        <select name="Moods" v-model="mood">
-                            <option value="" disabled selected hidden>Mood</option>
-                            <option>Neutral</option>
-                            <option>Happy</option>
-                            <option>Sad</option>
-                        </select>
+                    <!-- Select element used for choosing what mood to set playlist to -->
+                    <select name="Moods" v-model="mood">
+                        <option value="" disabled selected hidden>Mood</option>
+                        <option>Neutral</option>
+                        <option>Happy</option>
+                        <option>Sad</option>
+                    </select>
+                    <!-- Button that checks if both select elements have been filled correctly -->
                     &nbsp;&nbsp;<button @click="selection()">Set</button>
+                    <!-- Button that resets all the bools related to the entire div element,
+                        returning the user to the two main buttons again -->
+                    <button @click="cancelSettingPlaylist()">Cancel</button><br>
+                    <!-- Confirmation div, saves the playlistId to a mood when it's button is clicked -->
                     <div v-if="selected">
                         <br>Are you sure that you want to set '{{PL}}' to your '{{mood}}' mood?
                         <br><button @click="savePlaylistId()">Confirm</button>
                     </div>
                     <div v-if="notSelected"><br>The input fields are not filled properly</div>
                 </div>
-                <button v-if="!settingPlaylist" @click="getPlaylists()">Set a playlist to a mood</button>
             </div>
         </div>
     </div>
