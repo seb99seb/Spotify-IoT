@@ -3,9 +3,9 @@ Vue.createApp({
     data() {
         return {
             /**Id for logging into our Spotify Dashboard */
-            clientId: '849bcded0aa04ffa855b5bd3381c7284',
+            clientId: 'e75c831b093240c4a06f1c15c57a0fba',
             /**Essentialy our password for our Spotify Dashboard */
-            clientSecret: '25bed5e8f08a43ac9f914b920dae2b4b',
+            clientSecret: '6c9548cca5a54f818a90ad8194c64cc3',
             /**The scopes that we want for our token, allows for use of certain API calls */
             scopes: "user-read-playback-state playlist-read-private user-modify-playback-state",
             /**URI for getting back to our site after going to Spotify's site */
