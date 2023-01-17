@@ -7,7 +7,8 @@ http = urllib3.PoolManager()
 urllib3.disable_warnings()
 
 # URI to the REST Service
-URI = "https://sensifyrest2022.azurewebsites.net//api/Moods"
+#URI = "https://sensifyrest2022.azurewebsites.net//api/Moods"
+URI = "http://localhost:5093/api/Moods"
 
 # Port to broadcast messages
 serverPort = 7000
