@@ -1,4 +1,5 @@
-const baseUri = "https://sensifyrest2022.azurewebsites.net/api/Moods/playlistId"
+//const baseUri = "https://sensifyrest2022.azurewebsites.net/api/Moods/playlistId"
+const baseUri = "http://localhost:5093/api/Moods/playlistId"
 Vue.createApp({
     data() {
         return {
@@ -243,8 +244,10 @@ Vue.createApp({
         },
         /**A call to our API to retrieve the mood stored in the database */
         async getCurrentMood(){
-            await axios.get('https://sensifyrest2022.azurewebsites.net/api/Moods')
+            //await axios.get('https://sensifyrest2022.azurewebsites.net/api/Moods')
+            await axios.get('http://localhost:5093/api/Moods')
             .then(response => (this.currentMood = response.data))
+            console.log(this.currentMood)
         },
         /**Gets a playlist according to the mood the user has, i.e. the mood chosen on the Raspberry Pi */
         async getPlaylistId(){

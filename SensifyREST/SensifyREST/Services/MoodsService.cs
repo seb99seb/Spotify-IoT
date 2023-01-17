@@ -7,7 +7,10 @@ namespace SensifyREST.Services
         /// <summary>
         /// Connection string used for connecting to our database
         /// </summary>
-        private const string connectionString = @"Server=tcp:eventzealand.database.windows.net,1433;Initial Catalog=Spotify;Persist Security Info=False;User ID=sovs;Password=password1!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        //old connection string
+        //private const string connectionString = @"Server=tcp:eventzealand.database.windows.net,1433;Initial Catalog=Spotify;Persist Security Info=False;User ID=sovs;Password=password1!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        //new working one
+        private const string connectionString = @"Server=tcp:rb.database.windows.net,1433;Initial Catalog=RBDB;Persist Security Info=False;User ID=RBAdmin;Password=Hemmeligt88!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         public MoodsService()
         {
             
