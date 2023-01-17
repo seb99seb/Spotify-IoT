@@ -4,9 +4,9 @@ Vue.createApp({
     data() {
         return {
             /**Id for logging into our Spotify Dashboard */
-            clientId: 'e75c831b093240c4a06f1c15c57a0fba',
+            clientId: '41e4667866d6422bac262b7a0edcf2fc', //'e75c831b093240c4a06f1c15c57a0fba',
             /**Essentialy our password for our Spotify Dashboard */
-            clientSecret: '6c9548cca5a54f818a90ad8194c64cc3',
+            clientSecret: 'f32e9f8041864ccda1bcc6170c6a78cf', //'6c9548cca5a54f818a90ad8194c64cc3',
             /**The scopes that we want for our token, allows for use of certain API calls */
             scopes: "user-read-playback-state playlist-read-private user-modify-playback-state",
             /**URI for getting back to our site after going to Spotify's site */
@@ -20,7 +20,7 @@ Vue.createApp({
             /**variable used for doing XMLHTTPRequests */
             xhr: "",
             /**The user id of our specific Spotify account - note: needs Spotify premium to work */
-            userId: "31kqpkdzy6346fcuw6jh6tom5a3e",
+            userId: "ghavt16fd79aux2da5vr4ignq",
             /**Bool used to trigger a v-if statement in index.html for whether or not the user
             is setting a playlist to a mood */
             settingPlaylist: false,
